@@ -3,29 +3,64 @@
 }
 
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>E-Book</h1>
+    <p class="lead">E-Book is Online Book ordering Plateform</p>
+    <p>@Html.ActionLink("Learn more >", "About", "Home", null,new {
+                @class="btn btn-primary btn-lg"
+        })
+    </p>
 </div>
 
 <div class="row">
+    <h2>Most View Books</h2>
     <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <div class="BookTag">
+            <h1>To Kill a Mockingbird</h1>
+           <img class="sup" src="~/Content/Image/img.png" />
+            <p>
+                This classic novel, set in the 1930s American South, explores themes of racial injustice,
+                moral growth, and compassion through the eyes of Scout Finch, a young girl whose father,
+                Atticus Finch, is an attorney defending a black man wrongly accused of raping a white woman.
+                The story delves into the complexities of human nature and societal prejudices, making it a
+                powerful and enduring work of American literature.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
     </div>
+
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
+
+        <div class="BookTag">
+            <h1>"1984" by George Orwell</h1>
+            <img class="sup" src="~/Content/Image/img.png" />
+            <p>
+                In this dystopian novel, George Orwell presents a chilling vision of a totalitarian society
+                under the control of Big Brother, where independent thought is suppressed, history is rewritten,
+                and the concept of truth is manipulated. The protagonist, Winston Smith, works for the government
+                altering historical records but begins to rebel against the oppressive regime. "1984" serves as a
+                stark warning about the dangers of totalitarianism and the loss of individual freedom.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+            </div>
+        </div>
+
+
+
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+        <div class="BookTag">
+            <h1>"Pride and Prejudice" by Jane Austen</h1>
+            <img src="~/Content/Image/img.png" />
+            <p>
+                This beloved novel by Jane Austen is a romantic comedy that critiques the British class system
+                of the early 19th century. The story follows Elizabeth Bennet, a spirited and intelligent young woman,
+                as she navigates issues of manners, marriage, and morality. Her evolving relationship with the wealthy
+                and aloof Mr. Darcy is central to the plot, showcasing themes of love, social status, and personal
+                growth.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+        </div>
+        
+
     </div>
-</div>

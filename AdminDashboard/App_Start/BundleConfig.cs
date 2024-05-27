@@ -23,8 +23,10 @@ namespace AdminDashboard
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/CommonStyles/DashbordStyleSheet.css"));
+
+            bundles.Add(new StyleBundle("~/Content/Home/css").Include(
+                      "~/Content/CommonStyles/HomeStyleSheet.css"));
         }
     }
 }

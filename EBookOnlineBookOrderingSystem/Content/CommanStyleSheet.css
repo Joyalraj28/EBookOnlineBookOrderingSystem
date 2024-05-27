@@ -1,0 +1,26 @@
+﻿body {
+}
+
+.BookTag{
+    background-color:wheat;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    padding:5px;
+    height:550px;
+    border-radius:5px;
+    margin:5px;
+    
+}
+
+.BookTag > h1{
+    font-size:20px;
+}
+
+.BookTag > img{
+    margin:5px;
+    background-color:green;
+    align-content:center;
+    height:200px;
+    width:200px;
+}

@@ -1,31 +1,119 @@
-﻿@{
+﻿@model  AdminDashboard.Models.HomeModel
+
+@{
+    var XLabels = Newtonsoft.Json.JsonConvert.SerializeObject(Model.stackedViewModel.LstData.Select(x => x.DimensionOne).ToList());
+    var YValues = Newtonsoft.Json.JsonConvert.SerializeObject(Model.stackedViewModel.LstData.Select(x => x.Quantity).ToList());
     ViewBag.Title = "Home Page";
+
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+@Styles.Render("~/Content/Home/css")
+
+<div class="Main-Content">
+    <div class="CountTag-Content">
+        <div class="CountTag">
+            <h1>Total User</h1>
+            <h2>02</h2>
+        </div>
+        <div class="CountTag">
+            <h1>Total Book</h1>
+            <h2>02</h2>
+        </div>
+        <div class="CountTag">
+            <h1>Total Sales</h1>
+            <h2>02</h2>
+        </div>
+    </div>
+    <div class="Chart-Content">
+        <div class="chart-container" style="margin:10px">
+            <canvas id="chart" style="width:100%; height:500px"></canvas>
+        </div>
+
+        <div class="chart-container" style="margin:10px">
+            <canvas id="chart1" style="width:100%; height:500px"></canvas>
+        </div>
+
+
+
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+<script src="/Scripts/Chart/Chart.bundle.min.js"></script>
+<script src="/Scripts/Chart/jquery-3.3.1.min.js"></script>
+<script src="/Scripts/Chart/ChartGenerated.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var chartName = "chart";
+        var ctx = document.getElementById(chartName).getContext('2d');
+        var data = {
+            labels: @Html.Raw(XLabels),
+            datasets: [{
+                label: "Sales Analysis",
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(220, 221, 176,0.8)',
+                    'rgba(221, 198, 176,0.8)',
+                    'rgba(163, 172, 201,0.8)',
+                    'rgba(241, 198, 198,0.5)',
+                    'rgba(242, 200, 164,0.5)',
+                    'rgba(178, 204, 255,0.55)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(220, 221, 176,0.8)',
+                    'rgba(221, 198, 176,0.8)',
+                    'rgba(163, 172, 201,0.8)',
+                    'rgba(241, 198, 198,0.5)',
+                    'rgba(242, 200, 164,0.5)',
+                    'rgba(178, 204, 255,0.55)'
+                ],
+                borderWidth: 1,
+                data: @Html.Raw(YValues)
+            }]
+        };
+
+        var options = {
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        min: 0,
+                        beginAtZero: true
+                    },
+                    gridLines: {
+                        display: true,
+                        color: "rgba(255,99,164,0.2)"
+                    }
+                }],
+                xAxes: [{
+                    ticks: {
+                        min: 0,
+                        beginAtZero: true
+                    },
+                    gridLines: {
+                        display: false
+                    }
+                }]
+            }
+        };
+
+        var myChart = new Chart(ctx, {
+            options: options,
+            data: data,
+            type: 'bar'
+
+        });
+    });
+
+    ChartGenerated("chart1",@Html.Raw(XLabels),@Html.Raw(YValues),"pie")
+</script>
