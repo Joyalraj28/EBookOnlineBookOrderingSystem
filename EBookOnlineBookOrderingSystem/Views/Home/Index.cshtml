@@ -5,10 +5,12 @@
 <div class="jumbotron">
     <h1>E-Book</h1>
     <p class="lead">E-Book is Online Book ordering Plateform</p>
-    <p>@Html.ActionLink("Learn more >", "About", "Home", null,new {
-                @class="btn btn-primary btn-lg"
-        })
-    </p>
+    <nav class="navbar navbar-light bg-light">
+        <form class="form-inline">
+            <input class="form-control mr-sm" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
 </div>
 
 <div class="row">
@@ -16,22 +18,6 @@
     <div class="col-md-4">
         <div class="BookTag">
             <h1>To Kill a Mockingbird</h1>
-           <img class="sup" src="~/Content/Image/img.png" />
-            <p>
-                This classic novel, set in the 1930s American South, explores themes of racial injustice,
-                moral growth, and compassion through the eyes of Scout Finch, a young girl whose father,
-                Atticus Finch, is an attorney defending a black man wrongly accused of raping a white woman.
-                The story delves into the complexities of human nature and societal prejudices, making it a
-                powerful and enduring work of American literature.
-            </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-    </div>
-
-    <div class="col-md-4">
-
-        <div class="BookTag">
-            <h1>"1984" by George Orwell</h1>
             <img class="sup" src="~/Content/Image/img.png" />
             <p>
                 In this dystopian novel, George Orwell presents a chilling vision of a totalitarian society
@@ -40,27 +26,38 @@
                 altering historical records but begins to rebel against the oppressive regime. "1984" serves as a
                 stark warning about the dangers of totalitarianism and the loss of individual freedom.
             </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-            </div>
+            <a class="btn btn-default">View</a>
         </div>
-
-
+    </div>
 
     <div class="col-md-4">
-
         <div class="BookTag">
-            <h1>"Pride and Prejudice" by Jane Austen</h1>
-            <img src="~/Content/Image/img.png" />
+            <h1>To Kill a Mockingbird</h1>
+            <img class="sup" src="~/Content/Image/img.png" />
             <p>
-                This beloved novel by Jane Austen is a romantic comedy that critiques the British class system
-                of the early 19th century. The story follows Elizabeth Bennet, a spirited and intelligent young woman,
-                as she navigates issues of manners, marriage, and morality. Her evolving relationship with the wealthy
-                and aloof Mr. Darcy is central to the plot, showcasing themes of love, social status, and personal
-                growth.
+                In this dystopian novel, George Orwell presents a chilling vision of a totalitarian society
+                under the control of Big Brother, where independent thought is suppressed, history is rewritten,
+                and the concept of truth is manipulated. The protagonist, Winston Smith, works for the government
+                altering historical records but begins to rebel against the oppressive regime. "1984" serves as a
+                stark warning about the dangers of totalitarianism and the loss of individual freedom.
             </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+            <a class="btn btn-default">View</a>
         </div>
-        </div>
-        
-
     </div>
+
+    <div class="col-md-4">
+        <div class="BookTag">
+            <h1>To Kill a Mockingbird</h1>
+            <img class="sup" src="~/Content/Image/img.png" />
+            <p>
+                In this dystopian novel, George Orwell presents a chilling vision of a totalitarian society
+                under the control of Big Brother, where independent thought is suppressed, history is rewritten,
+                and the concept of truth is manipulated. The protagonist, Winston Smith, works for the government
+                altering historical records but begins to rebel against the oppressive regime. "1984" serves as a
+                stark warning about the dangers of totalitarianism and the loss of individual freedom.
+            </p>
+            <a class="btn btn-default">View</a>
+        </div>
+    </div>
+
+</div>

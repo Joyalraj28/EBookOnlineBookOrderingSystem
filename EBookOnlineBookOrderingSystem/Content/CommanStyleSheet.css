@@ -1,26 +1,68 @@
 ﻿body {
 }
 
-.BookTag{
-    background-color:wheat;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    padding:5px;
-    height:550px;
-    border-radius:5px;
-    margin:5px;
-    
+.jumbotron {
+    background-repeat: no-repeat;
+    width:100%;
+    background-color:antiquewhite;
 }
 
-.BookTag > h1{
-    font-size:20px;
+.BookTag {
+    background-color: wheat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 5px;
 }
+
+.BookTag > h1 {
+        font-size: 20px;
+        width: 200px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-width: calc(12 * 1em); /* Adjust as needed */
+    }
 
 .BookTag > img{
+    
     margin:5px;
     background-color:green;
     align-content:center;
-    height:200px;
+    height:180px;
+    width:180px;
+}
+    .BookTag > p {
+
+        overflow: visible;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        -webkit-line-clamp: 3; /* Adjust to limit the number of lines */
+        max-height: calc(4 * 1.2em); /* Adjust line height as needed */
+    }
+
+
+.BookTag > a {
     width:200px;
+}
+
+
+/* For single-line text */
+.text-limit {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: calc(10 * 1em); /* Adjust as needed */
+}
+
+/* For multi-line text */
+.text-limit-multiline {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    -webkit-line-clamp: 2; /* Adjust to limit the number of lines */
+    max-height: calc(2 * 1.2em); /* Adjust line height as needed */
 }
