@@ -1,0 +1,37 @@
+﻿@model EBookOnlineBookOrderingSystem.Models.Table.Users
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="Login-main">
+    <div class="Login-body">
+        <div class="Login-container" id="container">
+            <div class="form-container sign-in-container">
+                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                {
+                    <h1>Login</h1>
+                    @Html.TextBoxFor(User => User.username, new { @placeholder = "Username" })
+                    @Html.TextBoxFor(User => User.password, new { @placeholder = "Password", @type = "password" })
+                    <a href="#">Forgot your password?</a>
+                    <input type="submit" value="Login" />
+                    <input type="submit" value="Signup" />
+                }
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                            <h1>Welcome to EBook</h1>
+                            <p>Make wonderfull day one Book</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

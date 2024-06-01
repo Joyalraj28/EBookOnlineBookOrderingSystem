@@ -1,4 +1,4 @@
-﻿@model EBookOnlineBookOrderingSystem.Models.Table.Book
+﻿@model EBookOnlineBookOrderingSystem.Models.Procedure.Spr_GetBookInfo
 
 @{
     ViewBag.Title = "View";
@@ -17,6 +17,13 @@
         <dd>
             @Html.DisplayFor(model => model.name)
         </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantity)
+        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.price)
@@ -27,19 +34,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.catergoryid)
+            @Html.DisplayNameFor(model => model.catergoryname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.catergoryid)
+            @Html.DisplayFor(model => model.catergoryname)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.authorid)
+            @Html.DisplayNameFor(model => model.authorname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.authorid)
+            @Html.DisplayFor(model => model.authorname)
         </dd>
 
         <dt>
@@ -53,6 +60,7 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Buy Now", "BuyNow", new { id = Model.id }) |
+    @Html.ActionLink("Add to card", "Addtocard", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -25,6 +25,7 @@ namespace EBookOnlineBookOrderingSystem
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/Login_StyleSheet.css",
                       "~/Content/CommanStyleSheet.css"));
         }
     }

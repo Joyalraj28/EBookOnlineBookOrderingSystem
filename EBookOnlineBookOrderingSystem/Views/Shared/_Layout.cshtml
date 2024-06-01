@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using EBookOnlineBookOrderingSystem.Controls
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -8,6 +10,9 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+
+    @if (ViewConfig.IsShowNavigationBar)
+    {
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -27,6 +32,9 @@
             </div>
         </div>
     </div>
+    }
+
+
     <div class="container body-content">
         @RenderBody()
         <hr />
