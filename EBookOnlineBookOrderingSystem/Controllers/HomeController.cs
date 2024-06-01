@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EBookOnlineBookOrderingSystem.Models;
+using EBookOnlineBookOrderingSystem.Models.Table;
+using EBookOnlineBookOrderingSystem.Services;
 
 namespace EBookOnlineBookOrderingSystem.Controllers
 {
@@ -10,8 +13,16 @@ namespace EBookOnlineBookOrderingSystem.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View(new HomeModel { 
+                Books = Sqlbulider.Get<Book>().ToList()
+            });
         }
+        public ActionResult ViewBook(string id)
+        {
+            var selectbook = Sqlbulider.GetValue<Book>("id", id).FirstOrDefault();
+            return View(selectbook);
+        }
+
 
         public ActionResult About()
         {

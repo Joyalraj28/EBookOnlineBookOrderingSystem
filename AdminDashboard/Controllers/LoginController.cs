@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AdminDashboard.Models.Table;
+using AdminDashboard.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +13,7 @@ namespace AdminDashboard.Controllers
         // GET: Login
         public ActionResult Index()
         {
+            var i = Sqlbulider.Get<Users>();
             return View();
         }
 

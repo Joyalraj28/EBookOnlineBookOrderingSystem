@@ -1,12 +1,12 @@
-﻿using EBookOnlineBookOrderingSystem.SqlAttribute;
+﻿using AdminDashboard.SqlAttribute;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
-using Dapper;
 
-namespace EBookOnlineBookOrderingSystem.Services
+namespace AdminDashboard.Services
 {
     public static class Sqlbulider
     {

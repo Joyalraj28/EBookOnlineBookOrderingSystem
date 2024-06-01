@@ -1,10 +1,14 @@
 ﻿body {
 }
 
+.Content{
+    width:100%;
+}
+
 .jumbotron {
     background-repeat: no-repeat;
-    width:100%;
-    background-color:antiquewhite;
+    width: 100%;
+    background-color: antiquewhite;
 }
 
 .BookTag {
@@ -15,15 +19,19 @@
     padding: 5px;
     border-radius: 5px;
     margin: 5px;
+    align-items:center;
 }
 
-.BookTag > h1 {
+    .BookTag > h1 {
         font-size: 20px;
         width: 200px;
+        height: 80px;
+        overflow: visible;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
         overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        max-width: calc(12 * 1em); /* Adjust as needed */
+        -webkit-line-clamp: 3; /* Adjust to limit the number of lines */
+        max-height: calc(4 * 1.2em); /* Adjust line height as needed */
     }
 
 .BookTag > img{
@@ -34,7 +42,7 @@
     height:180px;
     width:180px;
 }
-    .BookTag > p {
+.BookTag > p {
 
         overflow: visible;
         display: -webkit-box;
@@ -43,12 +51,14 @@
         -webkit-line-clamp: 3; /* Adjust to limit the number of lines */
         max-height: calc(4 * 1.2em); /* Adjust line height as needed */
     }
-
-
 .BookTag > a {
     width:200px;
 }
 
+.Price {
+    display: flex;
+    justify-content: space-evenly;
+}
 
 /* For single-line text */
 .text-limit {

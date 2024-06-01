@@ -124,11 +124,19 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\Table\Author.cs" />
+    <Compile Include="Models\Table\Book.cs" />
+    <Compile Include="Models\Table\Catergory.cs" />
+    <Compile Include="Models\Table\MOrder.cs" />
+    <Compile Include="Models\Table\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\SQLBuilder.cs" />
+    <Compile Include="SqlAttribute\PrimaryKeyAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-4.0.0\.babelrc.js" />
@@ -599,10 +607,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\ViewBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Table\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

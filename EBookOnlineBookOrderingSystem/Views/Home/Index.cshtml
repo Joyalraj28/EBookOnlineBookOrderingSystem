@@ -1,63 +1,51 @@
-﻿@{
+﻿@using EBookOnlineBookOrderingSystem.Models;
+
+@model HomeModel
+
+@{
     ViewBag.Title = "Home Page";
+
 }
 
-<div class="jumbotron">
-    <h1>E-Book</h1>
-    <p class="lead">E-Book is Online Book ordering Plateform</p>
-    <nav class="navbar navbar-light bg-light">
-        <form class="form-inline">
-            <input class="form-control mr-sm" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </nav>
-</div>
+<div class="Content">
 
-<div class="row">
-    <h2>Most View Books</h2>
-    <div class="col-md-4">
-        <div class="BookTag">
-            <h1>To Kill a Mockingbird</h1>
-            <img class="sup" src="~/Content/Image/img.png" />
-            <p>
-                In this dystopian novel, George Orwell presents a chilling vision of a totalitarian society
-                under the control of Big Brother, where independent thought is suppressed, history is rewritten,
-                and the concept of truth is manipulated. The protagonist, Winston Smith, works for the government
-                altering historical records but begins to rebel against the oppressive regime. "1984" serves as a
-                stark warning about the dangers of totalitarianism and the loss of individual freedom.
-            </p>
-            <a class="btn btn-default">View</a>
-        </div>
+    <div class="jumbotron">
+        <h1>E-Book</h1>
+        <p class="lead">E-Book is Online Book ordering Plateform</p>
+        <nav class="navbar navbar-light bg-light">
+            <form class="form-inline">
+                <input class="form-control mr-sm" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </nav>
     </div>
 
-    <div class="col-md-4">
-        <div class="BookTag">
-            <h1>To Kill a Mockingbird</h1>
-            <img class="sup" src="~/Content/Image/img.png" />
-            <p>
-                In this dystopian novel, George Orwell presents a chilling vision of a totalitarian society
-                under the control of Big Brother, where independent thought is suppressed, history is rewritten,
-                and the concept of truth is manipulated. The protagonist, Winston Smith, works for the government
-                altering historical records but begins to rebel against the oppressive regime. "1984" serves as a
-                stark warning about the dangers of totalitarianism and the loss of individual freedom.
-            </p>
-            <a class="btn btn-default">View</a>
-        </div>
-    </div>
+    <div class="row">
+        <h2>Most View Books</h2>
 
-    <div class="col-md-4">
-        <div class="BookTag">
-            <h1>To Kill a Mockingbird</h1>
-            <img class="sup" src="~/Content/Image/img.png" />
-            <p>
-                In this dystopian novel, George Orwell presents a chilling vision of a totalitarian society
-                under the control of Big Brother, where independent thought is suppressed, history is rewritten,
-                and the concept of truth is manipulated. The protagonist, Winston Smith, works for the government
-                altering historical records but begins to rebel against the oppressive regime. "1984" serves as a
-                stark warning about the dangers of totalitarianism and the loss of individual freedom.
-            </p>
-            <a class="btn btn-default">View</a>
-        </div>
-    </div>
+        @foreach (var book in Model.Books)
+        {
+            <div class="col-md-4">
+                <div class="BookTag">
+                    <h1>@book.name</h1>
+                    <img class="sup" src="~/Content/Image/img.png" />
+                    <p>
+                        @book.description
+                    </p>
+                    <div>
+                        <div class="Price">
+                            <h2>@book.price</h2>
+                            <h2>.00/=</h2>
+                        </div>
+                    </div>
+                    @*<a  class="btn btn-default">View</a>*@
+                    @Html.ActionLink("View", "ViewBook", new { id = book.id }, new
+                    {
+                        @class= "btn btn-default"
+                    });
+                </div>
+            </div>
 
+        }
+    </div>
 </div>
