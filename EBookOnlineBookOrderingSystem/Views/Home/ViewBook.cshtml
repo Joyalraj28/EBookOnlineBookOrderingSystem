@@ -1,4 +1,6 @@
-﻿@model EBookOnlineBookOrderingSystem.Models.Procedure.Spr_GetBookInfo
+﻿@using EBookOnlineBookOrderingSystem.Models.Table
+@using EBookOnlineBookOrderingSystem.Controls
+@model EBookOnlineBookOrderingSystem.Models.Procedure.Spr_GetBookInfo
 
 @{
     ViewBag.Title = "View";
@@ -7,7 +9,6 @@
 <h2>@Html.DisplayFor(model => model.name)</h2>
 
 <div>
-    <h4>Book</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -60,7 +61,19 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Buy Now", "BuyNow", new { id = Model.id }) |
-    @Html.ActionLink("Add to card", "Addtocard", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @{
+        if (SessionControls<Users>.GetValue("LoginUser") is Users LoginUser && !string.IsNullOrEmpty(LoginUser?.username))
+        {
+
+            @Html.ActionLink("Buy Now", "BuyNow", new { id = Model?.id })
+            <label>|</label>
+            @Html.ActionLink("Add to card", "Addtocard", new { id = Model?.id })
+            <label>|</label>
+        }
+
+        @Html.ActionLink("Back to List", "Index")
+
+    }
+
+
 </p>

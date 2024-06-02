@@ -60,7 +60,31 @@
     justify-content: space-evenly;
 }
 
-/* For single-line text */
+
+.Login {
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+    height: 48px;
+}
+
+.Login-btn {
+    display:flex;
+    justify-content:end;
+    margin:10px;
+}
+
+.Login-btn a {
+    color:whitesmoke;
+}
+
+.Login-btn a:hover {
+  text-decoration:none;
+    }
+
+
+
+        /* For single-line text */
 .text-limit {
     overflow: hidden;
     white-space: nowrap;

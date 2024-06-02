@@ -31,14 +31,31 @@ namespace EBookOnlineBookOrderingSystem.Controllers
             return View(selectbook);
         }
 
-        public ActionResult BuyNow(string id)
+        public ActionResult BuyNow(Buybook buy)
         {
-            return View(Sqlbulider.GetValue<Book>("id",id).FirstOrDefault());
+            return View();
         }
 
         public ActionResult Addtocard(string id)
         {
-            return default;
+            var book = Sqlbulider.GetValue<Book>("id", id).FirstOrDefault();
+
+            if(book != null)
+            {
+                var aid = Sqlbulider.Count<AddToCard>() + 1;
+
+                Sqlbulider.Add<AddToCard>(new AddToCard
+                {
+                    id = aid,
+                    bookid = book.id,
+                    price = book.price,
+                    quantity = 1,
+                    userid = 1,
+
+                });
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         public ActionResult About()
@@ -54,5 +71,13 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
             return View();
         }
+
+        public ActionResult Signout()
+        {
+            SessionControls<Users>.ClearValue("LoginUser");
+            SessionControls<Spr_GetAddCardInfoByUser>.ClearValue("AddToCardInfo");
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

@@ -12,7 +12,6 @@ namespace AdminDashboard.Controllers
     {
         public ActionResult Index()
         {
-
             List<OverviewCountBoxmodel> _overviewCountBox = new List<OverviewCountBoxmodel>
             {
                 new OverviewCountBoxmodel{

@@ -2,13 +2,16 @@
 using EBookOnlineBookOrderingSystem.Models.Table;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace EBookOnlineBookOrderingSystem.Models
 {
-    public class HomeModel
+    public class Buybook
     {
-        public List<Book> Books { get; set; }
+        public Spr_GetBookInfo SelectBook { get; set; }
+        public int BuyQuantity { get; set; }
+
     }
 }

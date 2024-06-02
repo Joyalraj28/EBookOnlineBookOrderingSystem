@@ -11,7 +11,15 @@
                 @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                 {
                     <h1>Login</h1>
-                    @Html.TextBoxFor(User => User.username, new { @placeholder = "Username" })
+
+                    if (TempData["IsLoginFail"] != null && TempData["IsLoginFail"] is bool e && e)
+                    {
+
+                        <div id="LoginFail">
+                            <label>Invalid Email or Password</label>
+                        </div>
+                    }
+                    @Html.TextBoxFor(User => User.email, new { @placeholder = "Email" })
                     @Html.TextBoxFor(User => User.password, new { @placeholder = "Password", @type = "password" })
                     <a href="#">Forgot your password?</a>
                     <input type="submit" value="Login" />

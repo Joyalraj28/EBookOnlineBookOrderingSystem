@@ -249,3 +249,14 @@
         color: #3c97bf;
         text-decoration: none;
     }
+
+#LoginFail{
+    margin:10px;
+    background-color:lightcoral;
+    color:white;
+    border-radius:5px;
+}
+
+#LoginFail label{
+    margin:10px;
+}

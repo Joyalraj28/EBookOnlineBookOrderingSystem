@@ -1,4 +1,8 @@
 ﻿@using EBookOnlineBookOrderingSystem.Controls
+@using EBookOnlineBookOrderingSystem.Models.Table
+@using EBookOnlineBookOrderingSystem.Models.Procedure
+
+
 
 <!DOCTYPE html>
 <html>
@@ -8,30 +12,116 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <style>
+        .dropbtn {
+            background-color: transparent;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+            .dropbtn:hover, .dropbtn:focus {
+                /*background-color: #2980B9;*/
+                color: antiquewhite;
+            }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+            }
+
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
 </head>
 <body>
 
     @if (ViewConfig.IsShowNavigationBar)
     {
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("E-Book", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("E-Book", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    </ul>
+
+                    <div class="Login">
+                        <div class="Login-btn">
+                            @{
+
+                                if (SessionControls<Users>.GetValue("LoginUser") is Users LoginUser && !string.IsNullOrEmpty(LoginUser?.username))
+                                {
+                                    <div class="dropdown">
+                                        <button onclick="LoginInfoDropdown()" class="dropbtn">@LoginUser.username</button>
+                                        <div id="LoginDropdown" class="dropdown-content">
+                                            <a>@LoginUser.email</a>
+                                            @Html.ActionLink("Sign out", "Signout", "Home")
+                                        </div>
+                                    </div>
+
+                                    if (SessionControls<List<Spr_GetAddCardInfoByUser>>.GetValue("AddToCardInfo") is List<Spr_GetAddCardInfoByUser> addtocardlist && addtocardlist.Count > 0)
+                                    {
+                                        <div class="dropdown">
+                                            <button onclick="AddToCardInfoDropdown()" class="dropbtn">AddToCard (@addtocardlist.Count)</button>
+                                            <div id="AddToCardDropdown" class="dropdown-content">
+                                                @foreach (var cardinfo in addtocardlist)
+                                                {
+                                                    <a>@cardinfo.name</a>
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <button class="dropbtn">AddToCard (0)</button>
+                                    }
+
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Login", "Index", "Login")
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
     }
 
 
@@ -43,8 +133,36 @@
         </footer>
     </div>
 
+
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        /* When the user clicks on the button,
+        toggle between hiding and showing the dropdown content */
+        function LoginInfoDropdown() {
+            document.getElementById("LoginDropdown").classList.toggle("show");
+        }
+
+        function AddToCardInfoDropdown() {
+            document.getElementById("AddToCardDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+
 </body>
 </html>

@@ -13,7 +13,7 @@ namespace EBookOnlineBookOrderingSystem.Models.Table
         public string username { get; set; }
         public string password { get; set; }
         public int phoneNo { get; set; }
-        public int email { get; set; }
+        public string email { get; set; }
         public string usertype { get; set; }
     }
 }

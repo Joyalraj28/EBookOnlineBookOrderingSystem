@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using Dapper;
+using EBookOnlineBookOrderingSystem.Models.Table;
 
 namespace EBookOnlineBookOrderingSystem.Services
 {
@@ -132,6 +133,11 @@ namespace EBookOnlineBookOrderingSystem.Services
             return connection.Query<int>("SELECT Count(*) FROM " + typeof(Model).Name).FirstOrDefault();
         }
 
+        public static int IsValidUser(Users user)
+        {
+            return connection.Query<int>("SELECT Count(*) FROM Users where email = '" + user.email+"' and '"+user.password+"'").FirstOrDefault();
+        }
+
         public static IEnumerable<T> GetValue<T>(string Type, string value)
         {
             try {
@@ -142,11 +148,18 @@ namespace EBookOnlineBookOrderingSystem.Services
             }           
         }
 
-        public static bool IsValidLogin(string userType,string user_name,string password)
+        public static IEnumerable<T> GetValue<T>(string Type1, string value1, string Type2, string value2)
         {
-            return connection.QueryFirst<int>($"Select Count(*) from tblUser Where User_Name = '{user_name}' AND Password = '{password}' AND User_Type = '{userType}'") > 0;
+            try
+            {
+                return connection.Query<T>($"select * from {typeof(T).Name} where {Type1} = '{value1}' and {Type2} = '{value2}'");
+            }
+            catch (Exception ex)
+            {
+                return new List<T>();
+            }
         }
-        
+
         public static IEnumerable<Model> Get<Model>(int ID)
         {
 
