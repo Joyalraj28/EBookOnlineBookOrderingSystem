@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -7,6 +8,7 @@ using EBookOnlineBookOrderingSystem.Controls;
 using EBookOnlineBookOrderingSystem.Models;
 using EBookOnlineBookOrderingSystem.Models.Procedure;
 using EBookOnlineBookOrderingSystem.Models.Table;
+using EBookOnlineBookOrderingSystem.Service;
 using EBookOnlineBookOrderingSystem.Services;
 
 namespace EBookOnlineBookOrderingSystem.Controllers
@@ -19,8 +21,31 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         }
         public ActionResult Index()
         {
+           var Book = Sqlbulider.Get<Book>().ToList();
+
+            foreach (var item in Book)
+            {
+                if (item.bookimg != null)
+                {
+                    if (!Directory.Exists(Server.MapPath("~/UploadedImages/")))
+                    {
+                        Directory.CreateDirectory(Server.MapPath("~/UploadedImages/"));
+                    }
+
+                    var img = CustomImageConverter.ByteArrayToImage(item.bookimg);
+
+                    var fileName = Path.GetFileName("img" + item.id + ".png");
+                    var path = Path.Combine(Server.MapPath("~/UploadedImages/"), fileName);
+                    img.Save(path);
+
+                    ViewBag.ImagePath = "~/UploadedImages/" + fileName;
+
+
+                }
+            }
+
             return View(new HomeModel { 
-                Books = Sqlbulider.Get<Book>().ToList()
+                Books = Book
             });
         }
         public ActionResult ViewBook(string id)

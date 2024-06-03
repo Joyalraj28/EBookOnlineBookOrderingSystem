@@ -26,7 +26,7 @@
 .SiteBar {
     background-color: black;
     width: 20%;
-    height: 100vh;
+    height: 113.5vh;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
@@ -35,15 +35,14 @@
 }
 
 .body-content {
-
+    
     width: 80%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
-.content {
-    margin: 10px;
-    height: 80%;
-}
+
+
+
 
 .SiteBar > ul > li {
     font-size: 20px;
@@ -55,10 +54,18 @@
         color:white
 }
 
+
+.content {
+    margin: 10px;
+    height: 80%;
+}
+
 footer {
-    height: 100vh;
+    position: absolute;
+    height: 10vh;
     width: 100vw;
     padding: 10px;
     background-color: dimgrey;
-    color:white;
+    color: white;
+    top:100vh;
 }

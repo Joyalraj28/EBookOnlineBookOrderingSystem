@@ -11,8 +11,10 @@
 }
 
 #Form-Body{
-    flex-direction:column;
+    flex-direction:row;
     display:flex;
+    margin:10px;
+
 }
 
 #Form-prop{
@@ -29,5 +31,5 @@
 
 #Form-prop textarea{
     width:300px;
-    height:200px;
+    height:150px;
 }

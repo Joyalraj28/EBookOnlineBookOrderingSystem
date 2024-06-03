@@ -144,6 +144,7 @@
     <Compile Include="Models\Table\TOrder.cs" />
     <Compile Include="Models\Table\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CustomImageConverter.cs" />
     <Compile Include="Service\SQLBuilder.cs" />
     <Compile Include="SqlAttribute\PrimaryKeyAttribute.cs" />
   </ItemGroup>

@@ -32,7 +32,7 @@ namespace AdminDashboard.Services
             return null;
          }
 
-        public static int Add<Model>(Model model)
+        public static int Add<Model>(Model model, object parm = null)
         {
             List<string> data = new List<string>();
             model?.GetType().GetProperties().ToList().ForEach(val =>
@@ -41,6 +41,10 @@ namespace AdminDashboard.Services
                 {
 
                     data.Add("convert(datetime,'" + datatime.ToString() + "', 105)");
+                }
+                else if (val.GetValue(model) is byte[] img)
+                {
+                    data.Add((val.GetValue(model) != null ? "@Img" : "NULL"));
                 }
                 else
                 {
@@ -51,7 +55,7 @@ namespace AdminDashboard.Services
 
             var str = $"Insert into {typeof(Model).Name} Values ({string.Join(",", data)})";
 
-            return connection.Execute($"Insert into {typeof(Model).Name} Values ({string.Join(",", data)})");
+            return connection.Execute($"Insert into {typeof(Model).Name} Values ({string.Join(",", data)})",parm);
         }
 
         public static int Update<Model>(Model model,object parm = null)

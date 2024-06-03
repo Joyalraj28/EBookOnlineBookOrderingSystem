@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace AdminDashboard.Models.ViewModel
 {
@@ -10,9 +11,10 @@ namespace AdminDashboard.Models.ViewModel
     {
         public HttpPostedFileBase ImageFile { get; set; }
         public Book Book { get; set; }
-        public Author SelectAuthors {get;set;}
-        public List<Author> Authors {get;set;}
-        public Category SelectCatergories { get; set; }
-        public List<Category> Catergories { get; set; }
+
+        public List<SelectListItem> Authors {get;set;}
+        public SelectListItem SelectAuthors {get;set;}
+        public List<SelectListItem> Catergories { get; set; }
+        public SelectListItem SelectCatergories { get; set; }
     }
 }

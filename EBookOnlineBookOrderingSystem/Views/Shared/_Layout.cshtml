@@ -86,35 +86,36 @@
 
                                 if (SessionControls<Users>.GetValue("LoginUser") is Users LoginUser && !string.IsNullOrEmpty(LoginUser?.username))
                                 {
-                                    <div class="dropdown">
-                                        <button onclick="LoginInfoDropdown()" class="dropbtn">@LoginUser.username</button>
-                                        <div id="LoginDropdown" class="dropdown-content">
-                                            <a>@LoginUser.email</a>
-                                            @Html.ActionLink("Sign out", "Signout", "Home")
-                                        </div>
+                                <div class="dropdown">
+                                    <button onclick="LoginInfoDropdown()" class="dropbtn"><i class='fas fa-user-circle'></i> @LoginUser.username</button>
+                                    <div id="LoginDropdown" class="dropdown-content">
+                                        <a>@LoginUser.email</a>
+                                        @Html.ActionLink("Sign out", "Signout", "Home")
                                     </div>
+                                </div>
 
                                     if (SessionControls<List<Spr_GetAddCardInfoByUser>>.GetValue("AddToCardInfo") is List<Spr_GetAddCardInfoByUser> addtocardlist && addtocardlist.Count > 0)
                                     {
-                                        <div class="dropdown">
-                                            <button onclick="AddToCardInfoDropdown()" class="dropbtn">AddToCard (@addtocardlist.Count)</button>
-                                            <div id="AddToCardDropdown" class="dropdown-content">
-                                                @foreach (var cardinfo in addtocardlist)
+                                <div class="dropdown">
+                                    <button onclick="AddToCardInfoDropdown()" class="dropbtn"><i class='fas fa-shopping-cart'></i> (@addtocardlist.Count)</button>
+                                    <div id="AddToCardDropdown" class="dropdown-content">
+                                        @foreach (var cardinfo in addtocardlist)
                                                 {
-                                                    <a>@cardinfo.name</a>
+                                        <a>@cardinfo.name</a>
                                                 }
-                                            </div>
-                                        </div>
+                                    </div>
+                                </div>
                                     }
                                     else
                                     {
-                                        <button class="dropbtn">AddToCard (0)</button>
+                                <button class="dropbtn"><i class='fas fa-shopping-cart'></i> (0)</button>
                                     }
 
                                 }
                                 else
                                 {
-                                    @Html.ActionLink("Login", "Index", "Login")
+                        
+                                @Html.ActionLink("Login", "Index", "Login")
                                 }
                             }
                         </div>

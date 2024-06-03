@@ -4,10 +4,6 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-
-
 
 @using (Html.BeginForm("Edit", "Book", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
@@ -18,55 +14,79 @@
 
         <div id="Form-Body">
 
-            <div id="Form-prop">
-                <label>Book Image</label>
+            <div id="cloumn">
+                <div id="Form-prop">
+                    <label>Book Image</label>
 
-                @if (ViewBag.ImagePath != null)
-                {
-                    <img id="imagePreview" src="@Url.Content(ViewBag.ImagePath)" alt="Uploaded Image" style="max-width: 500px;" />
-                }
+                    @if (ViewBag.ImagePath != null)
+                    {
+                        <img id="imagePreview" src="@Url.Content(ViewBag.ImagePath)" alt="Uploaded Image" style="max-width: 200px; max-height: 200px;" />
+                    }
 
-                else
-                {
-                    <img id="imagePreview" src="#" alt="Preview" style="display:none; max-width:200px; max-height:200px;" />
-                }
+                    else
+                    {
+                        <img id="imagePreview" src="#" alt="Preview" style="display:none; max-width:200px; max-height:200px;" />
+                    }
 
-                @Html.TextBoxFor(m => m.ImageFile, new { type = "file", id = "imageUpload", name = "imageUpload", onchange = "previewImage(this)" })
+                    @Html.TextBoxFor(m => m.ImageFile, new { type = "file", id = "imageUpload", name = "imageUpload", onchange = "previewImage(this)" })
 
 
+
+                </div>
+
+
+                <div id="Form-prop">
+                    <label>Book name</label>
+                    @Html.TextBoxFor(model => model.Book.name)
+                </div>
+
+                <div id="Form-prop">
+                    <label>Book price</label>
+                    @Html.TextBoxFor(model => model.Book.price, htmlAttributes: new { type = "number", min = 0 })
+                </div>
 
             </div>
 
-            <div id="Form-prop">
+            <div id="cloumn">
+
+                <div id="Form-prop">
+                    <label>Book catergory</label>
+                    @Html.DropDownListFor(model => model.SelectCatergories, Model.Catergories, htmlAttributes: new { @class = "form-control" })
+                </div>
+
+                <div id="Form-prop">
+                    <label>Book Authors</label>
+                    @Html.DropDownListFor(model => model.SelectAuthors, Model.Authors, htmlAttributes: new { @class = "form-control" })
+                </div>
+
+                <div id="Form-prop">
+                    <label>Book quantity</label>
+                    @Html.TextBoxFor(model => model.Book.quantity, htmlAttributes: new { type = "number", min = 0 })
+                </div>
+
+                <div id="Form-prop">
+                    <label>Book description</label>
+                    @Html.TextAreaFor(model => model.Book.description)
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input id="Save-btn" type="submit" value="Save" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+
+            <div id="Form-prop" style="visibility:collapse">
                 <label>Book ID</label>
                 @Html.TextBoxFor(model => model.Book.id)
                 @Html.TextBoxFor(model => model.Book.authorid)
                 @Html.TextBoxFor(model => model.Book.catergoryid)
             </div>
 
-            <div id="Form-prop">
-                <label>Book name</label>
-                @Html.TextBoxFor(model => model.Book.name)
-            </div>
-
-            <div id="Form-prop">
-                <label>Book price</label>
-                @Html.TextBoxFor(model => model.Book.price)
-            </div>
-
-            <div id="Form-prop">
-                <label>Book description</label>
-                @Html.TextAreaFor(model => model.Book.description)
-            </div>
-
         </div>
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input id="Save-btn" type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
+        
     </div>
 }
 
@@ -90,5 +110,20 @@
 
             reader.readAsDataURL(input.files[0]);
         }
+    }
+
+    function CatergoriesChage() {
+        var selectElement = document.getElementById("CatergoriesSelect");
+        var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+        $("#Book_catergoryid").val(selectedValue)
+      
+
+    }
+
+    function AuthorsChage() {
+        var selectElement = document.getElementById("AuthorsSelect");
+        var selectedValue = selectElement.options[selectElement.selectedIndex].value;
+        $("#Book_authorid").val(selectedValue)
+
     }
 </script>
