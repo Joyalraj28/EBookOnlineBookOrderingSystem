@@ -1,0 +1,106 @@
+﻿@model IEnumerable<AdminDashboard.Models.Procedure.Spr_GetBookInfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p id="Create-btn">
+    <i class='fa fa-plus'></i>
+    @Html.ActionLink("Create", "Create")
+</p>
+
+<p id="Search">
+    <input id="Search-Input" placeholder="Search"/>
+    <button><i class='fas fa-search'></i></button>
+</p>
+
+    <style>
+        #description {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            -webkit-line-clamp: 5; /* Adjust to limit the number of lines */
+            max-height: calc(5 * 1.2em); /* Adjust line height as needed */
+        }
+    </style>
+
+    <div class="comman-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Quantity
+                    </th>
+                    <th>
+                        Price
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Author
+                    </th>
+                    <th>
+                        Catergory
+                    </th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+
+                </thead>
+
+            <tbody id="Search-Table">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.quantity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.price)
+                        </td>
+                        <td id="description">
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.authorname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.catergoryname)
+                        </td>
+                        <td>
+                            <p id="Edit-btn">
+                                <i class='fas fa-pencil-alt'></i>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                            </p>
+                        </td>
+                        <td>
+                            <p id="Info-btn">
+                                <i class='fas fa-info'></i>
+                                @Html.ActionLink("Details", "Details", new { id = item.id })
+                            </p>
+                        </td>
+
+                        <td>
+                            <p id="Delete-btn">
+                                <i class='fa fa-trash'></i>
+                                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                            </p>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+

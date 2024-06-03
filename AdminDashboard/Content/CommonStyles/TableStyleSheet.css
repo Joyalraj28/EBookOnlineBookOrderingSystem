@@ -1,0 +1,110 @@
+﻿.comman-table table {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+.comman-table tr, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.comman-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.comman-table tr:hover {
+    background-color: #ddd;
+}
+
+.comman-table th {
+    padding:5px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: dodgerblue;
+    color: white;
+}
+
+
+#Create-btn {
+    background-color:red;
+    background-color: dodgerblue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width:80px;
+}
+
+#Create-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+#Edit-btn {
+    background-color: red;
+    background-color: orange;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 80px;
+}
+
+#Edit-btn a {
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+
+#Info-btn {
+    background-color: red;
+    background-color: dodgerblue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 80px;
+}
+
+#Info-btn a {
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+}
+
+
+#Delete-btn {
+    background-color: red;
+    background-color: indianred;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 80px;
+}
+
+#Delete-btn a {
+    padding:5px;
+    text-decoration: none;
+    color: white;
+}
+
+#Search{
+
+    padding:0;
+}
+
+#Search button {
+    background-color: red;
+    background-color: dodgerblue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 50px;
+    height:40px;
+    border:none;
+}
+
+#Search input {
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+}

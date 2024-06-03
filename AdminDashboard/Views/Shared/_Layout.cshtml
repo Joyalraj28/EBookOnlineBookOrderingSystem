@@ -9,35 +9,43 @@
 </head>
 <body>
     <div class="container">
-        
+
         <div class="SiteBar">
             <div class="Logo">
-                <label>E-Book</label> 
+                <label>E-Book</label>
             </div>
             <ul>
                 <li>@Html.ActionLink("Overview", "Index", "Home")</li>
-                <li>@Html.ActionLink("Book Management", "About", "Home")</li>
-                <li>@Html.ActionLink("Order Managemet", "Contact", "Home")</li>
-                <li>@Html.ActionLink("Order Managemet", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Book Management", "Index", "Book")</li>
+                <li>@Html.ActionLink("Order Managemet", "Index", "Order")</li>
+                <li>@Html.ActionLink("Customer Managemet", "Index", "Customer")</li>
             </ul>
         </div>
 
         <div class="body-content">
             <div class="content">
                 @RenderBody()
-                
-
             </div>
             <footer>
-                <hr />
                 <p>&copy; @DateTime.Now.Year - EBook Admin Dashbord</p>
 
             </footer>
         </div>
     </div>
 
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+    $("document").ready(function () {
+        $("#Search-Input").on("keyup", function () {
+            var value = $(this).val().toLowerCase();
+            $("#Search-Table tr").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+
+    </script>
 </body>
 </html>

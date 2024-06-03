@@ -1,0 +1,28 @@
+﻿#Save-btn {
+    background-color: red;
+    background-color: dodgerblue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 80px;
+    font-size:15px;
+    margin:10px;
+    border-color:transparent;
+}
+
+#Form-Body{
+    flex-direction:column;
+    display:flex;
+}
+
+#Form-prop{
+    margin:10px;
+    display:flex;
+    flex-direction:column;
+}
+
+#Form-prop input {
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+}

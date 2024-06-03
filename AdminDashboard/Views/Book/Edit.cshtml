@@ -1,0 +1,59 @@
+﻿@model AdminDashboard.Models.ViewModel.BookViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+    <h4>Edit Book</h4>
+    <hr />
+
+    <div id="Form-Body">
+
+        <div id="Form-prop">
+            @Html.LabelFor(m => m.ImageFile, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.ImageFile, new { type = "file" })
+        </div>
+
+        <div id="Form-prop">
+            <label>Book ID</label>
+            @Html.DisplayFor(model => model.Book.id)
+        </div>
+
+        <div id="Form-prop">
+            @Html.TextBoxFor(model => model.Book.name)
+        </div>
+
+        <div id="Form-prop">
+            @Html.TextBoxFor(model => model.Book.price)
+        </div>
+        
+        <div id="Form-prop">
+                @Html.TextAreaFor(model => model.Book.description)
+        </div>
+
+        </div>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input id="Save-btn" type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
