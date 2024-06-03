@@ -1,6 +1,7 @@
 ﻿using AdminDashboard.Models.Procedure;
 using AdminDashboard.Models.Table;
 using AdminDashboard.Models.ViewModel;
+using AdminDashboard.Service;
 using AdminDashboard.Services;
 using System;
 using System.Collections.Generic;
@@ -51,7 +52,25 @@ namespace AdminDashboard.Controllers
         public ActionResult Edit(int id)
         {
             //Get book
-            var book = Sqlbulider.GetValue<Book>("id", id.ToString());
+            var book = Sqlbulider.GetValue<Book>("id", id.ToString()).FirstOrDefault();
+
+            if(book.bookimg != null)
+            {
+                if(!Directory.Exists(Server.MapPath("~/UploadedImages/")))
+                {
+                    Directory.CreateDirectory(Server.MapPath("~/UploadedImages/"));
+                }
+
+                var img = CustomImageConverter.ByteArrayToImage(book.bookimg);
+
+                var fileName = Path.GetFileName("img.png");
+                var path = Path.Combine(Server.MapPath("~/UploadedImages/"), fileName);
+                img.Save(path);
+
+                ViewBag.ImagePath = "~/UploadedImages/" + fileName;
+
+
+            }
 
             //Get all Autors
             var Autors = Sqlbulider.Get<Author>().ToList();
@@ -61,23 +80,27 @@ namespace AdminDashboard.Controllers
 
             return View(new BookViewModel
             {
-                Book = book.FirstOrDefault(),
+                Book = book,
                 Authors = Autors,
                 Catergories = Catergorys
             });
         }
 
+
         // POST: Book/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(BookViewModel model)
         {
             try
             {
                 // TODO: Add update logic here
+                model.Book.bookimg = CustomImageConverter.ImageToByteArray(model.ImageFile);
+
+                Sqlbulider.Update(model.Book,new { @Img = model.Book.bookimg });
 
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
@@ -103,29 +126,6 @@ namespace AdminDashboard.Controllers
             {
                 return View();
             }
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult UploadImage(BookViewModel model)
-        {
-            if (model.ImageFile != null && model.ImageFile.ContentLength > 0)
-            {
-                string fileName = Path.GetFileName(model.ImageFile.FileName);
-                string path = Path.Combine(Server.MapPath("~/Images/"), fileName);
-                model.ImageFile.SaveAs(path);
-
-                // Optionally, save the file path to the database or perform other operations
-
-                ViewBag.Message = "Image uploaded successfully.";
-            }
-            else
-            {
-                ViewBag.Message = "Please select an image file.";
-            }
-
-            return View(model);
         }
     }
 }

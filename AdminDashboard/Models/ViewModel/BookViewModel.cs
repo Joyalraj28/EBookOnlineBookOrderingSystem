@@ -10,7 +10,9 @@ namespace AdminDashboard.Models.ViewModel
     {
         public HttpPostedFileBase ImageFile { get; set; }
         public Book Book { get; set; }
+        public Author SelectAuthors {get;set;}
         public List<Author> Authors {get;set;}
+        public Category SelectCatergories { get; set; }
         public List<Category> Catergories { get; set; }
     }
 }

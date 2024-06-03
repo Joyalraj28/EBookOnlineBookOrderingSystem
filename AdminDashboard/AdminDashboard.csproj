@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomModel\MemoryPostedFile.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Procedure\Spr_GetAddCardInfoByUser.cs" />
     <Compile Include="Models\Procedure\Spr_GetBookInfo.cs" />
@@ -148,6 +149,7 @@
     <Compile Include="Models\ViewModel\ReportViewModel.cs" />
     <Compile Include="Models\ViewModel\StackedViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CustomImageConverter.cs" />
     <Compile Include="Service\SQLBuilder.cs" />
     <Compile Include="SqlAttribute\PrimaryKeyAttribute.cs" />
   </ItemGroup>

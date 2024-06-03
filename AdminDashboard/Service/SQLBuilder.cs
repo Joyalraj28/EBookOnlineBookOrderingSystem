@@ -54,11 +54,12 @@ namespace AdminDashboard.Services
             return connection.Execute($"Insert into {typeof(Model).Name} Values ({string.Join(",", data)})");
         }
 
-        public static int Update<Model>(Model model)
+        public static int Update<Model>(Model model,object parm = null)
         {
             string Name = "", ID = "";
 
             List<string> data = new List<string>();
+
             model?.GetType().GetProperties().ToList().ForEach(val =>
             {
                 if (Attribute.GetCustomAttribute(val, typeof(PrimaryKeyAttribute)) is PrimaryKeyAttribute primarykey)
@@ -70,9 +71,15 @@ namespace AdminDashboard.Services
 
                 if (val.GetValue(model) is DateTime datatime)
                 {
-
+                   
                     data.Add(val.Name + "= convert(datetime,'" + datatime.ToString() + "', 105)");
                 }
+
+                else if(val.GetValue(model) is byte[] img)
+                {
+                    data.Add(val.Name + "=" + (val.GetValue(model) != null ? "@Img" : "NULL"));
+                }
+
                 else
                 {
                     data.Add(val.Name + "=" + (val.GetValue(model) != null ? "'" + val.GetValue(model)?.ToString() + "'" : "NULL"));
@@ -82,7 +89,8 @@ namespace AdminDashboard.Services
 
             var str = $"Update {typeof(Model).Name} SET {string.Join(",", data)} WHERE {Name} = '{ID}'";
 
-            return connection.Execute($"Update {typeof(Model).Name} SET {string.Join(",", data)} WHERE {Name} = '{ID}'");
+            
+            return connection.Execute($"Update {typeof(Model).Name} SET {string.Join(",", data)} WHERE {Name} = '{ID}'", parm);
         }
       
         public static int Delete<Model>(Model model)
