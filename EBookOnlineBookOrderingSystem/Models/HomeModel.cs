@@ -9,6 +9,7 @@ namespace EBookOnlineBookOrderingSystem.Models
 {
     public class HomeModel
     {
+        public string Serach { get; set; }
         public List<CustomBookModel> Books { get; set; }
     }
 }

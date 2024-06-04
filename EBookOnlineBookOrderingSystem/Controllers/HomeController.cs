@@ -138,5 +138,48 @@ namespace EBookOnlineBookOrderingSystem.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public ActionResult Search(FormCollection form)
+        {
+
+ 
+            var Book = Sqlbulider.Get<Book>().Where(c => c.name.IndexOf(form["Serach"], StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+
+            List<CustomBookModel> customBookModels = new List<CustomBookModel>();
+
+            foreach (var item in Book)
+            {
+                CustomBookModel customBookModel = new CustomBookModel();
+                customBookModel.ImgPath = "~/Content/Image/NoImg.png";
+                if (item.bookimg != null)
+                {
+                    if (!Directory.Exists(Server.MapPath("~/UploadedImages/")))
+                    {
+                        Directory.CreateDirectory(Server.MapPath("~/UploadedImages/"));
+                    }
+
+                    var img = CustomImageConverter.ByteArrayToImage(item.bookimg);
+
+                    var fileName = Path.GetFileName("img" + item.id + ".png");
+                    var path = Path.Combine(Server.MapPath("~/UploadedImages/"), fileName);
+                    img.Save(path);
+
+                    customBookModel.ImgPath = "~/UploadedImages/" + fileName;
+
+
+                }
+
+
+                customBookModel.Book = item;
+
+                customBookModels.Add(customBookModel);
+            }
+
+            return View("Index",new HomeModel
+            {
+                Books = customBookModels
+            });
+
+        }
+
     }
 }

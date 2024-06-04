@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AdminDashboard.Models.Table;
+using AdminDashboard.Services;
 
 namespace AdminDashboard.Controllers
 {
@@ -11,7 +13,7 @@ namespace AdminDashboard.Controllers
         // GET: Category
         public ActionResult Index()
         {
-            return View();
+            return View(Sqlbulider.Get<Category>());
         }
 
         // GET: Category/Details/5
@@ -34,6 +36,14 @@ namespace AdminDashboard.Controllers
             {
                 // TODO: Add insert logic here
 
+                int id = Sqlbulider.Count<Category>() + 1;
+
+                Sqlbulider.Add(new Category
+                {
+                    id = id,
+                    name = collection["name"]
+                });
+
                 return RedirectToAction("Index");
             }
             catch
@@ -45,7 +55,8 @@ namespace AdminDashboard.Controllers
         // GET: Category/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var category = Sqlbulider.GetValue<Category>("id", id.ToString()).FirstOrDefault();
+            return View(category);
         }
 
         // POST: Category/Edit/5
@@ -55,7 +66,11 @@ namespace AdminDashboard.Controllers
             try
             {
                 // TODO: Add update logic here
-
+                Sqlbulider.Add(new Category
+                {
+                    id = id,
+                    name = collection["name"]
+                });
                 return RedirectToAction("Index");
             }
             catch

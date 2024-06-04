@@ -34,14 +34,15 @@
         max-height: calc(4 * 1.2em); /* Adjust line height as needed */
     }
 
-.BookTag > img{
-    
-    margin:5px;
-    background-color:green;
-    align-content:center;
-    height:180px;
-    width:180px;
-}
+    .BookTag > img {
+        margin: 5px;
+        background-color: green;
+        align-content: center;
+        height: 180px;
+        width: 180px;
+        max-width: 200px;
+        max-height: 200px;
+    }
 .BookTag > p {
 
         overflow: visible;
