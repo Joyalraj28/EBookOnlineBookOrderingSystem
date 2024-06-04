@@ -13,39 +13,69 @@
         <h1>E-Book</h1>
         <p class="lead">E-Book is Online Book ordering Plateform</p>
         <nav class="navbar navbar-light bg-light">
-            <form class="form-inline">
-                <input class="form-control mr-sm" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <p id="Search">
+                <input id="Search-Input" placeholder="Search" />
+                <button><i class='fas fa-search'></i></button>
+            </p>
         </nav>
     </div>
 
-    <div class="row">
-        <h2>Most View Books</h2>
+    <style>
+        .scroll-container {
+            height: 300px;
+            overflow-y: scroll;
+        }
 
-        @foreach (var book in Model.Books)
-        {
-            <div class="col-md-4">
-                <div class="BookTag">
-                    <h1>@book.name</h1>
-                    <img class="sup" src="~/Content/Image/img.png" />
-                    <p>
-                        @book.description
-                    </p>
-                    <div>
-                        <div class="Price">
-                            <h2>@book.price</h2>
-                            <h2>.00/=</h2>
+            .scroll-container::-webkit-scrollbar {
+                width: 12px;
+            }
+
+            .scroll-container::-webkit-scrollbar-track {
+                background: #f1f1f1;
+            }
+
+            .scroll-container::-webkit-scrollbar-thumb {
+                background: #888;
+            }
+
+                .scroll-container::-webkit-scrollbar-thumb:hover {
+                    background: #555;
+                }
+
+            .scroll-container::-webkit-scrollbar-button {
+                display: none;
+            }
+    </style>
+
+    <div class="row">
+        <div class="scroll-container">
+            <h2>Most View Books</h2>
+            @foreach (var book in Model.Books)
+            {
+                <div class="col-md-4">
+                    <div class="BookTag">
+                        <div class="comman-table">
+                            <h1>@book.Book.name</h1>
+                            <img class="sup" src="@Url.Content(book.ImgPath)" />
+                            <p>
+                                @book.Book.description
+                            </p>
+                            <div>
+                                <div class="Price">
+                                    <h2>@book.Book.price</h2>
+                                    <h2>.00/=</h2>
+                                </div>
+                            </div>
+                            @*<a  class="btn btn-default">View</a>*@
+                            @Html.ActionLink("View", "ViewBook", new { id = book.Book.id }, new
+                            {
+                                @class = "btn btn-default"
+                            });
                         </div>
                     </div>
-                    @*<a  class="btn btn-default">View</a>*@
-                    @Html.ActionLink("View", "ViewBook", new { id = book.id }, new
-                    {
-                        @class= "btn btn-default"
-                    });
                 </div>
-            </div>
 
-        }
+            }
+        </div>
     </div>
 </div>

@@ -7,8 +7,13 @@ using System.Web;
 
 namespace EBookOnlineBookOrderingSystem.Models
 {
-    public class HomeModel
+    public class CustomBookModel
     {
-        public List<CustomBookModel> Books { get; set; }
+        public Book Book { get; set; }
+        public string ImgPath { get; set; }
+        public HttpPostedFileBase ImageFile { get; set; }
+
+        public Spr_GetBookInfo BookInfo { get; set; }
+
     }
 }

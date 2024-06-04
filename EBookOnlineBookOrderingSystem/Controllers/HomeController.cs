@@ -23,8 +23,12 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         {
            var Book = Sqlbulider.Get<Book>().ToList();
 
+            List<CustomBookModel> customBookModels = new List<CustomBookModel>();
+          
             foreach (var item in Book)
             {
+                CustomBookModel customBookModel = new CustomBookModel();
+                customBookModel.ImgPath = "~/Content/Image/NoImg.png";
                 if (item.bookimg != null)
                 {
                     if (!Directory.Exists(Server.MapPath("~/UploadedImages/")))
@@ -38,14 +42,19 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                     var path = Path.Combine(Server.MapPath("~/UploadedImages/"), fileName);
                     img.Save(path);
 
-                    ViewBag.ImagePath = "~/UploadedImages/" + fileName;
+                    customBookModel.ImgPath = "~/UploadedImages/" + fileName;
 
 
                 }
+                
+
+                customBookModel.Book = item;
+
+                customBookModels.Add(customBookModel);
             }
 
             return View(new HomeModel { 
-                Books = Book
+                Books = customBookModels
             });
         }
         public ActionResult ViewBook(string id)
@@ -53,7 +62,32 @@ namespace EBookOnlineBookOrderingSystem.Controllers
             var selectbook = Sqlbulider.Procedure<Spr_GetBookInfo>(new {
                 @bookid = id
             }).FirstOrDefault();
-            return View(selectbook);
+
+
+         
+            CustomBookModel customBookModel = new CustomBookModel();
+            customBookModel.ImgPath = "~/Content/Image/NoImg.png";
+            if (selectbook.bookimg != null)
+            {
+                if (!Directory.Exists(Server.MapPath("~/UploadedImages/")))
+                {
+                    Directory.CreateDirectory(Server.MapPath("~/UploadedImages/"));
+                }
+
+                var img = CustomImageConverter.ByteArrayToImage(selectbook.bookimg);
+
+                var fileName = Path.GetFileName("img" + selectbook.id + ".png");
+                var path = Path.Combine(Server.MapPath("~/UploadedImages/"), fileName);
+                img.Save(path);
+
+                customBookModel.ImgPath = "~/UploadedImages/" + fileName;
+
+
+            }
+
+            customBookModel.BookInfo = selectbook;
+
+            return View(customBookModel);
         }
 
         public ActionResult BuyNow(Buybook buy)

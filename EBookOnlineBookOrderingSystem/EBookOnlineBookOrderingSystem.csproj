@@ -132,6 +132,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Buybook.cs" />
+    <Compile Include="Models\CustomBookModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\MainLayoutModel.cs" />
     <Compile Include="Models\Procedure\Spr_GetAddCardInfoByUser.cs" />
@@ -1992,6 +1993,7 @@
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-solid-900.svg" />
     <Content Include="Content\Image\img.png" />
     <Content Include="Content\Image\BG.jpeg" />
+    <Content Include="Content\Image\NoImg.png" />
     <Content Include="Content\Login_StyleSheet.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

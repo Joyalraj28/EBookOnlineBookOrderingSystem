@@ -1,61 +1,66 @@
 ﻿@using EBookOnlineBookOrderingSystem.Models.Table
 @using EBookOnlineBookOrderingSystem.Controls
-@model EBookOnlineBookOrderingSystem.Models.Procedure.Spr_GetBookInfo
+@model EBookOnlineBookOrderingSystem.Models.CustomBookModel
 
 @{
     ViewBag.Title = "View";
 }
 
-<h2>@Html.DisplayFor(model => model.name)</h2>
+<h2>@Html.DisplayFor(model => model.BookInfo.name)</h2>
 
 <div>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.name)
+            <img class="sup" src="@Url.Content(Model.ImgPath)" />
+        </dt>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookInfo.name)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.name)
+            @Html.DisplayFor(model => model.BookInfo.name)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.quantity)
+            @Html.DisplayNameFor(model => model.BookInfo.quantity)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.quantity)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.price)
+            @Html.DisplayFor(model => model.BookInfo.quantity)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.catergoryname)
+            @Html.DisplayNameFor(model => model.BookInfo.price)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.catergoryname)
+            @Html.DisplayFor(model => model.BookInfo.price)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.authorname)
+            @Html.DisplayNameFor(model => model.BookInfo.catergoryname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.authorname)
+            @Html.DisplayFor(model => model.BookInfo.catergoryname)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.description)
+            @Html.DisplayNameFor(model => model.BookInfo.authorname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.description)
+            @Html.DisplayFor(model => model.BookInfo.authorname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookInfo.description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookInfo.description)
         </dd>
 
     </dl>
@@ -65,9 +70,9 @@
         if (SessionControls<Users>.GetValue("LoginUser") is Users LoginUser && !string.IsNullOrEmpty(LoginUser?.username))
         {
 
-            @Html.ActionLink("Buy Now", "BuyNow", new { id = Model?.id })
+            @Html.ActionLink("Buy Now", "BuyNow", new { id = Model?.BookInfo?.id })
             <label>|</label>
-            @Html.ActionLink("Add to card", "Addtocard", new { id = Model?.id })
+            @Html.ActionLink("Add to card", "Addtocard", new { id = Model?.BookInfo?.id })
             <label>|</label>
         }
 
