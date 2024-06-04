@@ -135,11 +135,13 @@
     <Compile Include="Models\CustomBookModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\MainLayoutModel.cs" />
+    <Compile Include="Models\PaymentModel.cs" />
     <Compile Include="Models\Procedure\Spr_GetAddCardInfoByUser.cs" />
     <Compile Include="Models\Procedure\Spr_GetBookInfo.cs" />
     <Compile Include="Models\Table\AddToCard.cs" />
     <Compile Include="Models\Table\Author.cs" />
     <Compile Include="Models\Table\Book.cs" />
+    <Compile Include="Models\Table\CardsInfo.cs" />
     <Compile Include="Models\Table\Category.cs" />
     <Compile Include="Models\Table\MOrder.cs" />
     <Compile Include="Models\Table\TOrder.cs" />
@@ -1991,6 +1993,7 @@
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\FormStyleSheet.css" />
     <Content Include="Content\Image\img.png" />
     <Content Include="Content\Image\BG.jpeg" />
     <Content Include="Content\Image\NoImg.png" />
@@ -2325,10 +2328,10 @@
     <Content Include="Views\Home\ViewBook.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Home\BuyNow.cshtml" />
+    <Content Include="Views\Payment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Payment\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

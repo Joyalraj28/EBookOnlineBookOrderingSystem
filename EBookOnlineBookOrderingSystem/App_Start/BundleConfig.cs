@@ -27,6 +27,7 @@ namespace EBookOnlineBookOrderingSystem
                       "~/Content/site.css",
                       "~/Content/fontawesome_5.15.4/css/all.min.css",
                       "~/Content/Login_StyleSheet.css",
+                      "~/Content/FormStyleSheet.css",
                       "~/Content/CommanStyleSheet.css"));
         }
     }

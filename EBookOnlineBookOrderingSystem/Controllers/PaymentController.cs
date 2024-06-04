@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EBookOnlineBookOrderingSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,10 +10,14 @@ namespace EBookOnlineBookOrderingSystem.Controllers
     public class PaymentController : Controller
     {
         // GET: Payment
-        public ActionResult Index()
+        public ActionResult Index(PaymentModel payment=null)
         {
-            return View();
+            return View(new PaymentModel());
         }
+
+
+
+
 
         // GET: Payment/Details/5
         public ActionResult Details(int id)

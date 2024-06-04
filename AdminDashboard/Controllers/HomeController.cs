@@ -14,19 +14,22 @@ namespace AdminDashboard.Controllers
         {
             List<OverviewCountBoxmodel> _overviewCountBox = new List<OverviewCountBoxmodel>
             {
-                new OverviewCountBoxmodel{
-                    Title = "Count of User",
-                    Count = "22"
-                },
-                 new OverviewCountBoxmodel{
-                    Title = "Count of Profile",
-                    Count = "25"
-                },
-                  new OverviewCountBoxmodel{
-                    Title = "Count of Logs",
-                    Count = "30"
-                },
+                //new OverviewCountBoxmodel{
+                //    Title = "Count of User",
+                //    Count = "22"
+                //},
+                // new OverviewCountBoxmodel{
+                //    Title = "Count of Profile",
+                //    Count = "25"
+                //},
+                //  new OverviewCountBoxmodel{
+                //    Title = "Count of Logs",
+                //    Count = "30"
+                //},
             };
+
+
+
 
 
             Random rnd = new Random();
@@ -81,8 +84,6 @@ namespace AdminDashboard.Controllers
 
 
  };
-
-
 
             return View(new HomeModel
             {

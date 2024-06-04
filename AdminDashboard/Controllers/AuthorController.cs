@@ -43,10 +43,13 @@ namespace AdminDashboard.Controllers
                     name = collection["name"]
                 });
 
+                TempData["snackbar"] = "Successfully Insert Author details";
+
                 return RedirectToAction("Index");
             }
             catch
             {
+                TempData["snackbar"] = "Fail to Insert Author details";
                 return View();
             }
         }
@@ -71,10 +74,13 @@ namespace AdminDashboard.Controllers
                     name = collection["name"]
                 });
 
+                TempData["snackbar"] = "Successfully Update Author details";
+
                 return RedirectToAction("Index");
             }
             catch
             {
+                TempData["snackbar"] = "Fail to Update Author details";
                 return View();
             }
         }

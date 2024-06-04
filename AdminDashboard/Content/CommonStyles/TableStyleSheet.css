@@ -40,6 +40,10 @@
     color: white;
 }
 
+#btn-group{
+    display:flex;
+}
+
 #Edit-btn {
     background-color: red;
     background-color: orange;
@@ -50,7 +54,8 @@
 }
 
 #Edit-btn a {
-    padding: 5px;
+    margin:50px;
+    padding:5px;
     text-decoration: none;
     color: white;
 }
@@ -63,6 +68,20 @@
     padding: 10px;
     border-radius: 5px;
     width: 80px;
+}
+
+#Info-a{
+    background-color: red;
+    background-color: dodgerblue;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    width: 60px;
+}
+
+#Info-a a{
+    color:white;
+    text-decoration:none;
 }
 
 #Info-btn a {
@@ -80,6 +99,8 @@
     border-radius: 5px;
     width: 80px;
 }
+
+
 
 #Delete-btn a {
     padding:5px;

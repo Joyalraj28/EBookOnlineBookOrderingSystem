@@ -44,10 +44,12 @@ namespace AdminDashboard.Controllers
                     name = collection["name"]
                 });
 
+                TempData["snackbar"] = "Successfully Insert Category details";
                 return RedirectToAction("Index");
             }
             catch
             {
+                TempData["snackbar"] = "Fail to Insert Category details";
                 return View();
             }
         }
@@ -71,10 +73,12 @@ namespace AdminDashboard.Controllers
                     id = id,
                     name = collection["name"]
                 });
+                TempData["snackbar"] = "Successfully Update Category details";
                 return RedirectToAction("Index");
             }
             catch
             {
+                TempData["snackbar"] = "Fail to update Category details";
                 return View();
             }
         }
@@ -91,12 +95,14 @@ namespace AdminDashboard.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                Sqlbulider.Delete<Category>(id);
+                TempData["snackbar"] = "Successfully delete Book details";
+                return View();
 
-                return RedirectToAction("Index");
             }
-            catch
+            catch (Exception)
             {
+                TempData["snackbar"] = "Fail to delete Book details";
                 return View();
             }
         }

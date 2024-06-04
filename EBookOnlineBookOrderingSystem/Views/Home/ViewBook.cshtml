@@ -8,21 +8,19 @@
 
 <h2>@Html.DisplayFor(model => model.BookInfo.name)</h2>
 
+<style>
+    .dl-horizontal{
+    }
+</style>
+
 <div>
     <hr />
     <dl class="dl-horizontal">
 
-        <dt>
-            <img class="sup" src="@Url.Content(Model.ImgPath)" />
-        </dt>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BookInfo.name)
-        </dt>
-
         <dd>
-            @Html.DisplayFor(model => model.BookInfo.name)
+            <img class="sup" src="@Url.Content(Model.ImgPath)"/>
         </dd>
+
         <dt>
             @Html.DisplayNameFor(model => model.BookInfo.quantity)
         </dt>
@@ -69,16 +67,15 @@
     @{
         if (SessionControls<Users>.GetValue("LoginUser") is Users LoginUser && !string.IsNullOrEmpty(LoginUser?.username))
         {
-
-            @Html.ActionLink("Buy Now", "BuyNow", new { id = Model?.BookInfo?.id })
-            <label>|</label>
-            @Html.ActionLink("Add to card", "Addtocard", new { id = Model?.BookInfo?.id })
-            <label>|</label>
+            <div id="Info-a">
+                @Html.ActionLink("Buy Now", "BuyNow", new { id = Model?.BookInfo?.id })
+            </div>
+            <div id="Info-a">
+                @Html.ActionLink("Add to card", "Addtocard", new { id = Model?.BookInfo?.id })
+            </div>
         }
-
-        @Html.ActionLink("Back to List", "Index")
-
-    }
+        <div id="Info-a" style="width: 100px;"> @Html.ActionLink("Back to List", "Index")</div>
+      }
 
 
 </p>

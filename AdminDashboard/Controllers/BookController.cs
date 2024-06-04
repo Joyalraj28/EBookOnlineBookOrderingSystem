@@ -85,11 +85,12 @@ namespace AdminDashboard.Controllers
                     quantity = int.Parse(form["Book.quantity"])
                 }, parm);
 
-
+                TempData["snackbar"] = "Successfully Insert Book details";
                 return RedirectToAction("Index");
             }
             catch(Exception ex)
             {
+                TempData["snackbar"] = "Fail to Insert Book details";
                 return RedirectToAction("Index");
             }
         }
@@ -169,10 +170,12 @@ namespace AdminDashboard.Controllers
                     quantity = int.Parse(form["Book.quantity"])
                 }, parm);
 
+                TempData["snackbar"] = "Successfully update Book details";
                 return RedirectToAction("Index");
             }
             catch(Exception ex)
             {
+                TempData["snackbar"] = "Fail to Update Book details";
                 return View();
             }
         }
@@ -180,7 +183,18 @@ namespace AdminDashboard.Controllers
         // GET: Book/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                Sqlbulider.Delete<Book>(id);
+                TempData["snackbar"] = "Successfully delete Book details";
+                return View();
+
+            }
+            catch (Exception)
+            {
+                TempData["snackbar"] = "Fail to delete Book details";
+                return View();
+            }
         }
 
         // POST: Book/Delete/5

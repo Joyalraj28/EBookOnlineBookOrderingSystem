@@ -8,7 +8,11 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+
+    <div id="snackbar">Notification Message</div>
+
     <div class="container">
+
 
         <div class="SiteBar">
             <div class="Logo">
@@ -39,15 +43,47 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script>
-    $("document").ready(function () {
-        $("#Search-Input").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $("#Search-Table tr").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        $("document").ready(function () {
+            $("#Search-Input").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#Search-Table tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
             });
         });
-    });
 
     </script>
+
+    @{ if (TempData["snackbar"] != null)
+        {
+        <script>
+            $("document").ready(function ()
+            {
+               // Show the snack bar
+                $('#snackbar').html("@TempData["snackbar"]");
+                console.log($('#snackbar').html());
+               $('#snackbar').addClass('show');
+        
+           });
+        
+        </script>
+
+            TempData["snackbar"] = null;
+        }
+    }
+
+
+    <script>
+        $("document").ready(function () {
+         
+            // Set timeout to hide the snack bar after 3 seconds (adjust as needed)
+            setTimeout(function () {
+                $('#snackbar').removeClass('show');
+            }, 3000); // 3000 milliseconds = 3 seconds
+        });
+    </script>
+
+
+
 </body>
 </html>
