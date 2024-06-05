@@ -8,18 +8,58 @@
 
 <h2>@Html.DisplayFor(model => model.BookInfo.name)</h2>
 
+
+
 <style>
-    .dl-horizontal{
+    .cart {
+        background-color: wheat;
+        display: flex;
+      
+        height: 300px;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+        .cart img {
+            width: 180px;
+            height: 180px;
+        }
+
+    #cont-body {
+        margin: 10px;
+        margin-top:100px;
+    }
+
+    #cont-head {
+        display: flex;
+        margin: 10px;
+    }
+
+    #control{
+        display:flex;
+        flex-direction:row;
+        padding:10px;
+    }
+
+    #Info-a{
+        margin:10px;
+        height:40px;
+        width:150px;
     }
 </style>
 
-<div>
-    <hr />
-    <dl class="dl-horizontal">
+<h2>Details</h2>
 
-        <dd>
-            <img class="sup" src="@Url.Content(Model.ImgPath)"/>
-        </dd>
+<hr />
+
+<div class="cart">
+
+    <div id="cont-head" class="dl-horizontal">
+        <img class="sup" src="@Url.Content(Model.ImgPath)" />
+    </div>
+
+
+    <dl class="cont-body">
 
         <dt>
             @Html.DisplayNameFor(model => model.BookInfo.quantity)
@@ -63,7 +103,8 @@
 
     </dl>
 </div>
-<p>
+
+<div id="control">
     @{
         if (SessionControls<Users>.GetValue("LoginUser") is Users LoginUser && !string.IsNullOrEmpty(LoginUser?.username))
         {
@@ -75,7 +116,9 @@
             </div>
         }
         <div id="Info-a" style="width: 100px;"> @Html.ActionLink("Back to List", "Index")</div>
-      }
+    }
 
 
-</p>
+</div>
+
+

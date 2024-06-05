@@ -27,10 +27,12 @@ namespace EBookOnlineBookOrderingSystem.Controllers
           
             foreach (var item in Book)
             {
+                //Load Image
                 CustomBookModel customBookModel = new CustomBookModel();
                 customBookModel.ImgPath = "~/Content/Image/NoImg.png";
                 if (item.bookimg != null)
                 {
+                    //If not exist create directory
                     if (!Directory.Exists(Server.MapPath("~/UploadedImages/")))
                     {
                         Directory.CreateDirectory(Server.MapPath("~/UploadedImages/"));
@@ -43,13 +45,8 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                     img.Save(path);
 
                     customBookModel.ImgPath = "~/UploadedImages/" + fileName;
-
-
                 }
-                
-
                 customBookModel.Book = item;
-
                 customBookModels.Add(customBookModel);
             }
 
@@ -63,26 +60,23 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                 @bookid = id
             }).FirstOrDefault();
 
-
-         
             CustomBookModel customBookModel = new CustomBookModel();
+            //Load Image
             customBookModel.ImgPath = "~/Content/Image/NoImg.png";
             if (selectbook.bookimg != null)
             {
+                //If not exist create directory
                 if (!Directory.Exists(Server.MapPath("~/UploadedImages/")))
                 {
                     Directory.CreateDirectory(Server.MapPath("~/UploadedImages/"));
                 }
 
                 var img = CustomImageConverter.ByteArrayToImage(selectbook.bookimg);
-
                 var fileName = Path.GetFileName("img" + selectbook.id + ".png");
                 var path = Path.Combine(Server.MapPath("~/UploadedImages/"), fileName);
                 img.Save(path);
 
                 customBookModel.ImgPath = "~/UploadedImages/" + fileName;
-
-
             }
 
             customBookModel.BookInfo = selectbook;
@@ -98,11 +92,11 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         public ActionResult Addtocard(string id)
         {
             var book = Sqlbulider.GetValue<Book>("id", id).FirstOrDefault();
-
             if(book != null)
             {
                 var aid = Sqlbulider.Count<AddToCard>() + 1;
 
+                //Insert Add to card info in Database
                 Sqlbulider.Add<AddToCard>(new AddToCard
                 {
                     id = aid,
@@ -140,12 +134,8 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult Search(FormCollection form)
         {
-
- 
             var Book = Sqlbulider.Get<Book>().Where(c => c.name.IndexOf(form["Serach"], StringComparison.OrdinalIgnoreCase) >= 0).ToList();
-
             List<CustomBookModel> customBookModels = new List<CustomBookModel>();
-
             foreach (var item in Book)
             {
                 CustomBookModel customBookModel = new CustomBookModel();
@@ -165,15 +155,10 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
                     customBookModel.ImgPath = "~/UploadedImages/" + fileName;
 
-
                 }
-
-
                 customBookModel.Book = item;
-
                 customBookModels.Add(customBookModel);
             }
-
             return View("Index",new HomeModel
             {
                 Books = customBookModels

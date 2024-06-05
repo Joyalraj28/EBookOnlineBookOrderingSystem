@@ -9,15 +9,88 @@
 </head>
 <body>
 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: white;
+            padding: 1em 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1em;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        .login {
+            display: flex;
+            align-items: center;
+        }
+
+            .login label {
+                margin-right: 0.5em;
+            }
+
+            .login input[type="text"], .login input[type="password"] {
+                padding: 0.5em;
+                margin-right: 0.5em;
+                border: none;
+                border-radius: 0.25em;
+            }
+
+            .login button {
+                padding: 0.5em 1em;
+                background-color: #5cb85c;
+                border: none;
+                border-radius: 0.25em;
+                color: white;
+                cursor: pointer;
+            }
+
+                .login button:hover {
+                    background-color: #4cae4c;
+                }
+
+    </style>
+
+    <div class="navbar">
+        <div class="navbar-container">
+            <div class="Logo">
+                <label>E-Book</label>
+            </div>
+            <div class="login">
+                 <label>Joyal</label>
+            </div>
+        </div>
+    </div>
+
+
     <div id="snackbar">Notification Message</div>
 
     <div class="container">
 
 
         <div class="SiteBar">
-            <div class="Logo">
-                <label>E-Book</label>
-            </div>
+            
             <ul>
                 <li>@Html.ActionLink("Overview", "Index", "Home")</li>
                 <li>@Html.ActionLink("Book Management", "Index", "Book")</li>
@@ -56,17 +129,17 @@
 
     @{ if (TempData["snackbar"] != null)
         {
-        <script>
+            <script>
             $("document").ready(function ()
             {
                // Show the snack bar
                 $('#snackbar').html("@TempData["snackbar"]");
                 console.log($('#snackbar').html());
                $('#snackbar').addClass('show');
-        
+
            });
-        
-        </script>
+
+            </script>
 
             TempData["snackbar"] = null;
         }
@@ -75,7 +148,7 @@
 
     <script>
         $("document").ready(function () {
-         
+
             // Set timeout to hide the snack bar after 3 seconds (adjust as needed)
             setTimeout(function () {
                 $('#snackbar').removeClass('show');

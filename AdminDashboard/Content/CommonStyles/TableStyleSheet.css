@@ -45,7 +45,6 @@
 }
 
 #Edit-btn {
-    background-color: red;
     background-color: orange;
     color: white;
     padding: 10px;
@@ -54,7 +53,7 @@
 }
 
 #Edit-btn a {
-    margin:50px;
+    margin:10px;
     padding:5px;
     text-decoration: none;
     color: white;

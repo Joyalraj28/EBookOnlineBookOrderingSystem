@@ -49,5 +49,10 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                 return RedirectToAction(nameof(Index));
             }
         }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
     }
 }

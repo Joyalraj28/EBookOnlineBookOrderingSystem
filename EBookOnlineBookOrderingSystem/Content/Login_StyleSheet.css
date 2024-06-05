@@ -56,6 +56,32 @@
     transition: transform 80ms ease-in;
 }
 
+#Cancel {
+    border-radius: 20px;
+    border: 1px solid indianred;
+    background-color: indianred;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.ActionLogin-btn-link > a {
+    border-radius: 20px;
+    border: 1px solid dodgerblue;
+    background-color: dodgerblue;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
 .Login-main input[type=submit]:active {
         transform: scale(0.95);
     }

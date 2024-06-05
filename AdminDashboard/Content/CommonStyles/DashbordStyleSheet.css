@@ -1,10 +1,9 @@
 ﻿body {
     margin:0;
+    display:compact;
 }
 
 .Logo{
-    background-color:dodgerblue;
-    height:80px;
     display:flex;
     flex-direction:column;
     text-align:center;
@@ -21,11 +20,13 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+
 }
 
 .SiteBar {
     background-color: black;
     width: 20%;
+    margin-top:60px;
     height: 113.5vh;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
@@ -56,8 +57,9 @@
 
 
 .content {
-    margin: 10px;
-    height: 80%;
+    margin: 20px;
+    margin-top:80px;
+    height: 180px;
 }
 
 footer {

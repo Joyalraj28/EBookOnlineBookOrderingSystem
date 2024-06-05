@@ -1,5 +1,7 @@
 ﻿using AdminDashboard.Models;
+using AdminDashboard.Models.Table;
 using AdminDashboard.Models.ViewModel;
+using AdminDashboard.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +14,14 @@ namespace AdminDashboard.Controllers
     {
         public ActionResult Index()
         {
-            List<OverviewCountBoxmodel> _overviewCountBox = new List<OverviewCountBoxmodel>
-            {
-                //new OverviewCountBoxmodel{
-                //    Title = "Count of User",
-                //    Count = "22"
-                //},
-                // new OverviewCountBoxmodel{
-                //    Title = "Count of Profile",
-                //    Count = "25"
-                //},
-                //  new OverviewCountBoxmodel{
-                //    Title = "Count of Logs",
-                //    Count = "30"
-                //},
-            };
+
+
+
+
+
+            List<OverviewCountBoxmodel> _overviewCountBox = new List<OverviewCountBoxmodel>();
+
+           
 
 
 
@@ -35,58 +30,27 @@ namespace AdminDashboard.Controllers
             Random rnd = new Random();
 
 
-            var lstModel = new List<ReportViewModel>()
-            {
-                 new ReportViewModel
-                {
-                    DimensionOne = "Joyalraj",
-                    Quantity = rnd.Next( 10 )
-                },
+            var lstModel = new List<ReportViewModel>();
 
-                new ReportViewModel
-                {
-                 DimensionOne = "Halith",
-                Quantity = rnd.Next( 10 )
-                },
+            Sqlbulider.Get<Book>().ToList().ForEach(val => {
 
-                 new ReportViewModel
+                lstModel.Add(new ReportViewModel
                 {
-                     DimensionOne = "Thushyanthan",
-                     Quantity = rnd.Next( 10 )
-                },
+                    DimensionOne = val.name,
+                    Quantity = new Random().Next(val.quantity)
 
-                new ReportViewModel
-                {
-                 DimensionOne = "Philp",
-                 Quantity = rnd.Next( 10 )
-                },
-                  new ReportViewModel
-                {
-                 DimensionOne = "Sutha",
-                 Quantity = rnd.Next( 10 )
-                },
-                   new ReportViewModel
-                {
-                 DimensionOne = "Bala",
-                 Quantity = rnd.Next( 10 )
-                },
-                     new ReportViewModel
-                {
-                 DimensionOne = "SivaPriya",
-                 Quantity = rnd.Next( 10 )
-                },
-
-                        new ReportViewModel
-                {
-                 DimensionOne = "Shithuja",
-                 Quantity = rnd.Next( 10 )
-                },
+                });
 
 
- };
+            });
+
+
 
             return View(new HomeModel
             {
+                TotalBook = Sqlbulider.Count<Book>(),
+                TotalCustomer = Sqlbulider.Count<Users>(),
+                TotalSales = 10,
                 OverviewCountBoxRow = new List<OverviewCountBoxmodelRow>
                 {
                     new OverviewCountBoxmodelRow

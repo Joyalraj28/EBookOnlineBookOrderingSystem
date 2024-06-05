@@ -1,8 +1,11 @@
-﻿@model EBookOnlineBookOrderingSystem.Models.Table.Users
-
+﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Register";
 }
+
+
+@model EBookOnlineBookOrderingSystem.Models.Table.Users
+
 
 <div class="Login-main">
     <div class="Login-body">
@@ -10,7 +13,7 @@
             <div class="form-container sign-in-container">
                 @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                 {
-                    <h1>Login</h1>
+                    <h1>Register</h1>
 
                     if (TempData["IsLoginFail"] != null && TempData["IsLoginFail"] is bool e && e)
                     {
@@ -20,11 +23,16 @@
                         </div>
                     }
 
-                    @Html.TextBoxFor(User => User.email, new { @placeholder = "Email" })
+                    @*<div id="LoginFail">
+                        <label>Invalid register input</label>
+                    </div>*@
+
+                    @Html.TextBoxFor(User => User.username, new { @placeholder = "Username" })
                     @Html.TextBoxFor(User => User.password, new { @placeholder = "Password", @type = "password" })
-                    <a href="#">Forgot your password?</a>
-                    <input type="submit" value="Login" />
+                    @Html.TextBoxFor(User => User.password, new { @placeholder = "Re-Password", @type = "password" })
+                    @Html.TextBoxFor(User => User.email, new { @placeholder = "Email" })
                     <input type="submit" value="Register" />
+                    <input id="Cancel" type="submit" value="Cancel" />
                     @*<div class="ActionLogin-btn-link">
             @Html.ActionLink("Register", "Register")
                 </div>*@
@@ -39,8 +47,8 @@
                         <button class="ghost" id="signIn">Sign In</button>
                     </div>
                     <div class="overlay-panel overlay-right">
-                            <h1>Welcome to EBook</h1>
-                            <p>Make wonderfull day one Book</p>
+                        <h1>Welcome to EBook</h1>
+                        <p>Make wonderfull day one Book</p>
                     </div>
                 </div>
             </div>

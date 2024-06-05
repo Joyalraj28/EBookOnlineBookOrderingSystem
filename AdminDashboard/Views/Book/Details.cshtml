@@ -4,12 +4,46 @@
     ViewBag.Title = "Details";
 }
 
+
+<style>
+    .cart {
+        background-color: wheat;
+        display: flex;
+        width:550px;
+        height:300px;
+        padding:10px;
+        border-radius:5px;
+    }
+
+        .cart img {
+            width: 180px;
+            height: 180px;
+        }
+
+    #cont-body {
+        margin: 10px;
+    }
+
+    #cont-head{
+        display:flex;
+        margin:10px;
+
+    }
+</style>
+
 <h2>Details</h2>
 
-<div>
-    <h4>Spr_GetBookInfo</h4>
-    <hr />
-    <dl class="dl-horizontal">
+<hr />
+
+<div class="cart">
+
+    <div id="cont-head" class="dl-horizontal">
+        <img class="sup" src="@Url.Content(ViewBag.ImagePath)" />
+    </div>
+
+
+    <dl id="cont-body" class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.name)
         </dt>
@@ -35,27 +69,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.catergoryid)
+            @Html.DisplayNameFor(model => model.catergoryname)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.catergoryid)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.authorid)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.authorid)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.description)
+            @Html.DisplayFor(model => model.catergoryname)
         </dd>
 
         <dt>
@@ -67,11 +85,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.catergoryname)
+            @Html.DisplayNameFor(model => model.description)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.catergoryname)
+            @Html.DisplayFor(model => model.description)
         </dd>
 
     </dl>

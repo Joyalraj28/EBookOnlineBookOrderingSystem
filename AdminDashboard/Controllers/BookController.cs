@@ -24,7 +24,27 @@ namespace AdminDashboard.Controllers
         // GET: Book/Details/5
         public ActionResult Details(int id)
         {
-            return View(Sqlbulider.Procedure<Spr_GetBookInfo>(new { @bookid = id}).FirstOrDefault());
+
+            var book = Sqlbulider.Procedure<Spr_GetBookInfo>(new { @bookid = id }).FirstOrDefault();
+            if (book.bookimg != null)
+            {
+                if (!Directory.Exists(Server.MapPath("~/UploadedImages/")))
+                {
+                    Directory.CreateDirectory(Server.MapPath("~/UploadedImages/"));
+                }
+
+                var img = CustomImageConverter.ByteArrayToImage(book.bookimg);
+
+                var fileName = Path.GetFileName("img" + book.id + ".png");
+                var path = Path.Combine(Server.MapPath("~/UploadedImages/"), fileName);
+                img.Save(path);
+
+                ViewBag.ImagePath = "~/UploadedImages/" + fileName;
+
+
+            }
+
+            return View(book);
         }
 
         // GET: Book/Create
