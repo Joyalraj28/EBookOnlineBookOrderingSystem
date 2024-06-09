@@ -2,6 +2,7 @@
 }
 
 .Main-Content {
+    margin:10px;
 }
 
 
@@ -25,6 +26,13 @@
 
 .chart-container {
     background-color: whitesmoke;
-    width: 300px;
-    height: 300px;
+    width: 400px;
+    height: 400px;
 }
+
+.chart-container canvas{
+    
+  
+}
+
+

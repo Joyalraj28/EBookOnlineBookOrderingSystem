@@ -90,7 +90,7 @@
 
 
         <div class="SiteBar">
-            
+
             <ul>
                 <li>@Html.ActionLink("Overview", "Index", "Home")</li>
                 <li>@Html.ActionLink("Book Management", "Index", "Book")</li>
@@ -105,11 +105,12 @@
             <div class="content">
                 @RenderBody()
             </div>
-            <footer>
-                <p>&copy; @DateTime.Now.Year - EBook Admin Dashbord</p>
 
-            </footer>
         </div>
+        <footer>
+            <p>&copy; @DateTime.Now.Year - EBook Admin Dashbord</p>
+
+        </footer>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
