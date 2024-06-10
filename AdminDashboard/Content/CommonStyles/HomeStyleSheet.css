@@ -1,14 +1,15 @@
 ﻿body {
+    
 }
 
 .Main-Content {
-    margin:10px;
+ position:absolute;
+
 }
 
 
 .Chart-Content {
     display: flex
-  
 }
 
 .CountTag-Content{
@@ -26,8 +27,10 @@
 
 .chart-container {
     background-color: whitesmoke;
-    width: 400px;
     height: 400px;
+    width:550px;
+       
+    
 }
 
 .chart-container canvas{

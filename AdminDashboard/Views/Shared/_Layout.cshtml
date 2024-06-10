@@ -15,39 +15,45 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
+
         }
 
         .navbar {
             background-color: #333;
             color: white;
             padding: 1em 0;
-            position: fixed;
             top: 0;
-            width: 100%;
-            z-index: 1000;
+            width: 100vw;
         }
 
         .navbar-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
+            max-width: 100vw;
             margin: 0 auto;
             padding: 0 1em;
         }
 
+
+        .logo {
+            display: flex;
+            font-size: 25px;
+        }
         .logo h1 {
             margin: 0;
-            font-size: 1.5em;
+           
         }
 
         .login {
             display: flex;
             align-items: center;
+            
         }
 
             .login label {
                 margin-right: 0.5em;
+          
             }
 
             .login input[type="text"], .login input[type="password"] {
@@ -69,16 +75,15 @@
                 .login button:hover {
                     background-color: #4cae4c;
                 }
-
     </style>
 
     <div class="navbar">
         <div class="navbar-container">
-            <div class="Logo">
+            <div class="logo">
                 <label>E-Book</label>
             </div>
             <div class="login">
-                 <label>Joyal</label>
+                <label>Joyal</label>
             </div>
         </div>
     </div>
@@ -87,8 +92,6 @@
     <div id="snackbar">Notification Message</div>
 
     <div class="container">
-
-
         <div class="SiteBar">
 
             <ul>
@@ -99,20 +102,19 @@
                 <li>@Html.ActionLink("Order Managemet", "Index", "Order")</li>
                 <li>@Html.ActionLink("Customer Managemet", "Index", "Customer")</li>
             </ul>
+
         </div>
+
 
         <div class="body-content">
-            <div class="content">
-                @RenderBody()
-            </div>
 
+            @RenderBody()
         </div>
-        <footer>
-            <p>&copy; @DateTime.Now.Year - EBook Admin Dashbord</p>
-
-        </footer>
     </div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - EBook Admin Dashbord</p>
 
+    </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)

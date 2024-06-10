@@ -20,10 +20,8 @@ namespace AdminDashboard.Controllers
         // GET: Book
         public ActionResult Index(int PageNumber = 1)
         {
-
-            PaginationViewModel<Spr_GetBookInfo> pagination = new PaginationViewModel<Spr_GetBookInfo>(Sqlbulider.Procedure<Spr_GetBookInfo>().ToList(),2);
-            var page1 = pagination.GetPageItem(PageNumber);
-            return View(page1);
+            PaginationViewModel<Spr_GetBookInfo> pagination = new PaginationViewModel<Spr_GetBookInfo>(Sqlbulider.Procedure<Spr_GetBookInfo>().ToList(),4);
+            return View(pagination.GetPageItem(PageNumber));
         }
 
         public ActionResult PageMove(string PageNumber)
