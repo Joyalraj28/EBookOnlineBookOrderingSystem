@@ -1,4 +1,6 @@
-﻿@model IEnumerable<AdminDashboard.Models.Procedure.Spr_GetBookInfo>
+﻿@using AdminDashboard.Models.ViewModel;
+
+@model  PaginatedItemsViewModel<AdminDashboard.Models.Procedure.Spr_GetBookInfo>
 
 @{
     ViewBag.Title = "Index";
@@ -50,7 +52,29 @@
                 display: none;
             }
 
+        #pagebar{
+            display:flex;
+            justify-content:center;
+            margin:10px;
+        }
 
+        #pagebar-index a{
+            margin:10px;
+            text-decoration:none;
+            color:black;
+            font-size:20px;
+            font-family:Arial;
+            font-weight:bold;
+        }
+
+        #pagebar-index-active a {
+            margin: 10px;
+            text-decoration: none;
+            color: dodgerblue;
+            font-size: 20px;
+            font-family: Arial;
+            font-weight: bold;
+        }
        
     </style>
 
@@ -84,7 +108,7 @@
                 </thead>
 
             <tbody id="Search-Table">
-                @foreach (var item in Model)
+                @foreach (var item in Model.Items)
                 {
                     <tr>
                         <td>
@@ -128,6 +152,26 @@
                 }
             </tbody>
         </table>
+
+        <div id="pagebar">
+            @foreach(var pagebar in Model.PageBarList)
+            {
+                if (pagebar.Active)
+                {
+                    <div id="pagebar-index-active">
+                    @Html.ActionLink(pagebar.PageNumber.ToString(), "PageMove",new { PageNumber = pagebar.PageNumber.ToString() })
+                    </div>
+                }
+                else
+                {
+
+                    <div id="pagebar-index">
+                     @Html.ActionLink(pagebar.PageNumber.ToString(), "PageMove", new { PageNumber = pagebar.PageNumber.ToString() })
+                    </div>
+                }
+            
+          }
+        </div>
 
     </div>
 

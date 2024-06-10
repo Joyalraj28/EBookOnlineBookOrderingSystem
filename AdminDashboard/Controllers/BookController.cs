@@ -1,4 +1,5 @@
-﻿using AdminDashboard.Models.Procedure;
+﻿using AdminDashboard.Controls;
+using AdminDashboard.Models.Procedure;
 using AdminDashboard.Models.Table;
 using AdminDashboard.Models.ViewModel;
 using AdminDashboard.Service;
@@ -15,11 +16,24 @@ namespace AdminDashboard.Controllers
     public class BookController : Controller
     {
 
+    
         // GET: Book
-        public ActionResult Index()
+        public ActionResult Index(int PageNumber = 1)
         {
-            return View(Sqlbulider.Procedure<Spr_GetBookInfo>());
+
+            PaginationViewModel<Spr_GetBookInfo> pagination = new PaginationViewModel<Spr_GetBookInfo>(Sqlbulider.Procedure<Spr_GetBookInfo>().ToList(),2);
+            var page1 = pagination.GetPageItem(PageNumber);
+            return View(page1);
         }
+
+        public ActionResult PageMove(string PageNumber)
+        {
+            return RedirectToAction("Index", new
+            {
+                PageNumber = int.Parse(PageNumber)
+            });
+        }
+   
 
         // GET: Book/Details/5
         public ActionResult Details(int id)

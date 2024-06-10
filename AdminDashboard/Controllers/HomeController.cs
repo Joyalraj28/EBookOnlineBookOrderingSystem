@@ -15,17 +15,7 @@ namespace AdminDashboard.Controllers
         public ActionResult Index()
         {
 
-
-
-
-
             List<OverviewCountBoxmodel> _overviewCountBox = new List<OverviewCountBoxmodel>();
-
-           
-
-
-
-
 
             Random rnd = new Random();
 
