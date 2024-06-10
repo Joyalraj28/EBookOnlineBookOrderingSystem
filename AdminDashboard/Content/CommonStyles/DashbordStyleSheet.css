@@ -39,15 +39,17 @@
 .body-content {
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:start;
     align-content:center;
-    width: 80%;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
-    .body-content > div {
-        margin: 30px;
-    }
+.body-content > div {
+     padding:25px;
+     width:100vw;
+     height:100%;
+
+}
 
 
 
