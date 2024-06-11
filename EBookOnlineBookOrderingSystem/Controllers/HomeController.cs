@@ -68,6 +68,29 @@ namespace EBookOnlineBookOrderingSystem.Controllers
             });
         }
 
+        public void ReLoadAddtoCard()
+        {
+            var login = SessionControls<Users>.GetValue("LoginUser");
+            List<Spr_GetAddCardInfoByUser> getAddCardInfo = Sqlbulider.Procedure<Spr_GetAddCardInfoByUser>(new
+            {
+                @userid = login.id
+            }).ToList();
+
+            SessionControls<List<Spr_GetAddCardInfoByUser>>.SetValue("AddToCardInfo", getAddCardInfo);
+
+        }
+
+        public ActionResult DeleteAddCartBook(string id)
+        {
+            //Delete item
+            Sqlbulider.Delete<AddToCard>(int.Parse(id));
+        
+            //Reload
+            ReLoadAddtoCard();
+
+           return RedirectToAction(nameof(Index));
+        }
+
         public ActionResult ViewBook(string id)
         {
             var selectbook = Sqlbulider.Procedure<Spr_GetBookInfo>(new {
@@ -122,6 +145,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                 });
             }
 
+            ReLoadAddtoCard();
             return RedirectToAction(nameof(Index));
         }
 
