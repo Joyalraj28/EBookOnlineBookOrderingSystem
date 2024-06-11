@@ -103,32 +103,6 @@
 }
 
 
-.payment-form
-{
-    padding:25px;
-    font-size:20px;
-    background-color:lightblue;
-    display:flex;
-    justify-content:center;
-    
-}
-
-    .payment-form input[type=submit] {
-        background-color: red;
-        background-color: dodgerblue;
-        color: white;
-        margin:10px;
-        padding: 10px;
-        border-radius: 5px;
-        width: 200px;
-        font-size: 15px;
-        margin: 10px;
-        border-color: transparent;
-    }
-
-.payment-form-prop{
-
-}
 
 
 

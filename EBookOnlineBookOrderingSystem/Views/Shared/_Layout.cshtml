@@ -56,6 +56,22 @@
         .show {
             display: block;
         }
+
+        #AddCartItem{
+            display:flex;
+        }
+
+        #bookname{
+            width:150px;
+        }
+
+        #trash {
+            border-color:transparent;
+            display: flex;
+            flex-direction: column;
+            color: indianred;
+            justify-content: center;
+        }
     </style>
 </head>
 <body>
@@ -101,7 +117,11 @@
                                             <div id="AddToCardDropdown" class="dropdown-content">
                                                 @foreach (var cardinfo in addtocardlist)
                                                 {
-                                                    <a>@cardinfo.name</a>
+                                                <div id="AddCartItem">
+                                                    <a id="bookname" href="@Url.Action("ViewBook","Home",new { id = cardinfo.id })">@cardinfo.name</a>
+                                                    <button onclick="DeleteConformation(@cardinfo.adcardid)" id="trash"><i class='fa fa-trash'></i></button>
+                                                  
+                                                </div>
                                                 }
                                             </div>
                                         </div>
@@ -139,7 +159,33 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script>
+<script>
+
+        function DeleteConformation(id)
+        {
+
+            if (confirm("Do you whant to delete this book ?"))
+            {
+                PostAction("@Url.Action("DeleteAddCartBook", "Home")", { 'id': id })
+            }
+
+
+        }
+
+        function PostAction(url, data) {
+            $.ajax({
+                    type: 'POST',
+                    url:url,
+                    data: data,
+                    error: function (e) {
+                        alert(r.responseText);
+                    },
+                    complete: function (r) {
+                        location.reload();
+                    }
+                });
+        }
+
         /* When the user clicks on the button,
         toggle between hiding and showing the dropdown content */
         function LoginInfoDropdown() {
@@ -163,7 +209,7 @@
                 }
             }
         }
-    </script>
+</script>
 
     <script>
         //$("document").ready(function () {
