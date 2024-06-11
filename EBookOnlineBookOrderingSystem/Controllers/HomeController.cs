@@ -8,6 +8,7 @@ using EBookOnlineBookOrderingSystem.Controls;
 using EBookOnlineBookOrderingSystem.Models;
 using EBookOnlineBookOrderingSystem.Models.Procedure;
 using EBookOnlineBookOrderingSystem.Models.Table;
+using EBookOnlineBookOrderingSystem.Models.ViewModel;
 using EBookOnlineBookOrderingSystem.Service;
 using EBookOnlineBookOrderingSystem.Services;
 
@@ -19,7 +20,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         {
             ViewConfig.IsShowNavigationBar = true;
         }
-        public ActionResult Index()
+        public ActionResult Index(int PageNumber = 1)
         {
            var Book = Sqlbulider.Get<Book>().ToList();
 
@@ -50,10 +51,23 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                 customBookModels.Add(customBookModel);
             }
 
+            PaginationViewModel<CustomBookModel> bookpaginationViewModel = new PaginationViewModel<CustomBookModel>(customBookModels,6);
+            var pagevieemodel = bookpaginationViewModel.GetPageItem(PageNumber);
+
+
             return View(new HomeModel { 
-                Books = customBookModels
+                Books = pagevieemodel
             });
         }
+
+        public ActionResult PageMove(string PageNumber)
+        {
+            return RedirectToAction("Index", new
+            {
+                PageNumber = int.Parse(PageNumber)
+            });
+        }
+
         public ActionResult ViewBook(string id)
         {
             var selectbook = Sqlbulider.Procedure<Spr_GetBookInfo>(new {
@@ -159,9 +173,13 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                 customBookModel.Book = item;
                 customBookModels.Add(customBookModel);
             }
+
+            PaginationViewModel<CustomBookModel> bookpaginationViewModel = new PaginationViewModel<CustomBookModel>(customBookModels,6);
+            var pagevieemodel = bookpaginationViewModel.GetPageItem();
+
             return View("Index",new HomeModel
             {
-                Books = customBookModels
+                Books = pagevieemodel
             });
 
         }

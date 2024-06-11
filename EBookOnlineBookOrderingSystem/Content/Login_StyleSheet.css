@@ -56,6 +56,21 @@
     transition: transform 80ms ease-in;
 }
 
+#Register-button {
+    border-radius: 20px;
+    border: 1px solid dodgerblue;
+    background-color: dodgerblue;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width:280px;
+    transition: transform 80ms ease-in;
+}
+
+
 #Cancel {
     border-radius: 20px;
     border: 1px solid indianred;

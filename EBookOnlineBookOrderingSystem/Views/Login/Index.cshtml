@@ -24,7 +24,9 @@
                     @Html.TextBoxFor(User => User.password, new { @placeholder = "Password", @type = "password" })
                     <a href="#">Forgot your password?</a>
                     <input type="submit" value="Login" />
-                    <input type="submit" value="Register" />
+                    @Html.ActionLink("Register", "Register",null, htmlAttributes: new { id = "Register-button" })
+
+                 
                     @*<div class="ActionLogin-btn-link">
             @Html.ActionLink("Register", "Register")
                 </div>*@

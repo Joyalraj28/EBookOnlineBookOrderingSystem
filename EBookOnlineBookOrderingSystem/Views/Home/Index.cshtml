@@ -9,6 +9,33 @@
 
 <div class="Content">
 
+
+    <style>
+        #pagebar {
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        #pagebar-index a {
+            margin: 10px;
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+            font-family: Arial;
+            font-weight: bold;
+        }
+
+        #pagebar-index-active a {
+            margin: 10px;
+            text-decoration: none;
+            color: dodgerblue;
+            font-size: 20px;
+            font-family: Arial;
+            font-weight: bold;
+        }
+    </style>
+
     <div class="jumbotron">
         <h1>E-Book</h1>
         <p class="lead">E-Book is Online Book ordering Plateform</p>
@@ -55,29 +82,48 @@
     <div class="row">
         <div class="scroll-container">
             <h2>Most View Books</h2>
-            @foreach (var book in Model.Books)
+            @foreach (var book in Model.Books.Items)
             {
                 <div class="col-md-4">
-                    <div  class="BookTag">
-                   
-                            <h1 >@book.Book.name</h1>
-                            <img class="sup" src="@Url.Content(book.ImgPath)" />
-                            <p>
-                                @book.Book.description
-                            </p>
-                            <div>
-                                <div class="Price">
-                                    <h2>@book.Book.price .00/=</h2>
-                               
-                                </div>
+                    <div class="BookTag">
+
+                        <h1>@book.Book.name</h1>
+                        <img class="sup" src="@Url.Content(book.ImgPath)" />
+                        <p>
+                            @book.Book.description
+                        </p>
+                        <div>
+                            <div class="Price">
+                                <h2>@book.Book.price.00/=</h2>
+
                             </div>
-                            @Html.ActionLink("View", "ViewBook", new { id = book.Book.id }, new
-                            {
-                                @class = "btn btn-default"
-                            })
                         </div>
-                  
+                        @Html.ActionLink("View", "ViewBook", new { id = book.Book.id }, new
+                        {
+                            @class = "btn btn-default"
+                        })
+                    </div>
+
                 </div>
+
+            }
+        </div>
+        <div id="pagebar">
+            @foreach (var pagebar in Model.Books.PageBarList)
+            {
+                if (pagebar.Active)
+                {
+                    <div id="pagebar-index-active">
+                        @Html.ActionLink(pagebar.PageNumber.ToString(), "PageMove", new { PageNumber = pagebar.PageNumber.ToString() })
+                    </div>
+                }
+                else
+                {
+
+                    <div id="pagebar-index">
+                        @Html.ActionLink(pagebar.PageNumber.ToString(), "PageMove", new { PageNumber = pagebar.PageNumber.ToString() })
+                    </div>
+                }
 
             }
         </div>
