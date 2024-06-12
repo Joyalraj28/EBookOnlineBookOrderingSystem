@@ -4,15 +4,11 @@
     ViewBag.Title = "BuyNow";
 }
 
-<h2>BuyNow</h2>
-
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>Book</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 <div class="form-group">
@@ -29,33 +25,6 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label class="control-label col-md-2">Quantity</label>
-        <div class="col-md-10">
-            @Html.DisplayFor(model => model.SelectBook.quantity, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Catergory name</label>
-        <div class="col-md-10">
-            @Html.DisplayFor(model => model.SelectBook.catergoryname, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Author name</label>
-        <div class="col-md-10">
-            @Html.DisplayFor(model => model.SelectBook.authorname, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label class="control-label col-md-2">Description</label>
-        <div class="col-md-10">
-            @Html.DisplayFor(model => model.SelectBook.description, new { htmlAttributes = new { @class = "form-control" } })
-        </div>
-    </div>
 
     <div class="form-group">
         <label class= "control-label col-md-2">Buy quantity</label> 
@@ -64,13 +33,9 @@
             @Html.ValidationMessageFor(model => model.BuyQuantity, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-    </div>
 </div>
+
+
 }
 
 <div>

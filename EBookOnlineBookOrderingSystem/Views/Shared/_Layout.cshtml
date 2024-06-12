@@ -13,6 +13,55 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
+
+        .alert-content {
+            display: flex;
+            justify-content: end;
+        }
+
+        .alert {
+           
+            padding: 20px;
+            background-color: #f44336;
+            color: white;
+            opacity: 1;
+            transition: opacity 0.6s;
+            margin: 15px;
+            width:300px;
+            z-index:1;
+            position:absolute;
+          
+
+        }
+
+            .alert.success {
+                background-color: #04AA6D;
+            }
+
+            .alert.info {
+                background-color: #2196F3;
+            }
+
+            .alert.warning {
+                background-color: #ff9800;
+            }
+
+        .closebtn {
+            margin-left: 15px;
+            color: white;
+            font-weight: bold;
+            float: right;
+            font-size: 22px;
+            line-height: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .closebtn:hover {
+                color: black;
+            }
+
+
         .dropbtn {
             background-color: transparent;
             color: white;
@@ -76,6 +125,7 @@
 </head>
 <body>
 
+
     @if (ViewConfig.IsShowNavigationBar)
     {
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -117,11 +167,11 @@
                                             <div id="AddToCardDropdown" class="dropdown-content">
                                                 @foreach (var cardinfo in addtocardlist)
                                                 {
-                                                <div id="AddCartItem">
-                                                    <a id="bookname" href="@Url.Action("ViewBook","Home",new { id = cardinfo.id })">@cardinfo.name</a>
-                                                    <button onclick="DeleteConformation(@cardinfo.adcardid)" id="trash"><i class='fa fa-trash'></i></button>
-                                                  
-                                                </div>
+                                                    <div id="AddCartItem">
+                                                        <a id="bookname" href="@Url.Action("ViewBook","Home",new { id = cardinfo.id })">@cardinfo.name</a>
+                                                        <button onclick="DeleteConformation(@cardinfo.adcardid)" id="trash"><i class='fa fa-trash'></i></button>
+
+                                                    </div>
                                                 }
                                             </div>
                                         </div>
@@ -145,6 +195,33 @@
         </div>
     }
 
+   
+    
+<div class="alert-content">
+
+    @if (TempData["DangerAlert"] != null)
+    {
+        <div class="alert">
+            <span class="closebtn">&times;</span>
+            <strong>Danger!</strong> Indicates a dangerous or potentially negative action.
+        </div>
+    }
+
+    @if (TempData["SuccessAlert"] != null)
+    {
+        <div class="alert success">
+            <span class="closebtn">&times;</span>
+            <strong>Success!</strong> Indicates a successful or positive action.
+        </div>
+    }
+    @if (TempData["InfoAlert"] != null)
+    {
+        <div class="alert info">
+            <span class="closebtn">&times;</span>
+            <strong>Info!</strong> Indicates a neutral informative change or action.
+        </div>
+    }
+    </div>
 
     <div class="container body-content">
         @RenderBody()
@@ -159,7 +236,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-<script>
+    <script>
 
         function DeleteConformation(id)
         {
@@ -209,13 +286,13 @@
                 }
             }
         }
-</script>
+    </script>
 
     <script>
         //$("document").ready(function () {
         //    $("#Search-Input").on("keyup", function () {
         //        var value = $(this).val().toLowerCase();
-               
+
         //        $("#search-tag").html().filter(function () {
         //            $(this).toggle($(this).text().tolowercase().indexof(value) > -1)
         //        });
@@ -226,6 +303,19 @@
 
     </script>
 
+
+    <script>
+        var close = document.getElementsByClassName("closebtn");
+        var i;
+
+        for (i = 0; i < close.length; i++) {
+            close[i].onclick = function () {
+                var div = this.parentElement;
+                div.style.opacity = "0";
+                setTimeout(function () { div.style.display = "none"; }, 600);
+            }
+        }
+    </script>
 
 </body>
 </html>

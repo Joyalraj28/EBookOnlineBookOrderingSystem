@@ -121,30 +121,55 @@ namespace EBookOnlineBookOrderingSystem.Controllers
             return View(customBookModel);
         }
 
-        public ActionResult BuyNow(Buybook buy)
+        public ActionResult BuyNow(string id)
         {
-            return View();
+            return View(new Buybook { });
         }
 
         public ActionResult Addtocard(string id)
         {
             var book = Sqlbulider.GetValue<Book>("id", id).FirstOrDefault();
-            if(book != null)
+
+           var isanlreadyexits = Sqlbulider.GetValue<AddToCard>("bookid", id);
+
+            var loginuser = SessionControls<Users>.GetValue("LoginUser");
+
+            if (book != null)
             {
-                var aid = Sqlbulider.Count<AddToCard>() + 1;
-
-                //Insert Add to card info in Database
-                Sqlbulider.Add<AddToCard>(new AddToCard
+                if (isanlreadyexits.Count() <= 0)
                 {
-                    id = aid,
-                    bookid = book.id,
-                    price = book.price,
-                    quantity = 1,
-                    userid = 1,
+                    var aid = Sqlbulider.Count<AddToCard>() + 1;
 
-                });
+                    //Insert Add to card info in Database
+                    Sqlbulider.Add<AddToCard>(new AddToCard
+                    {
+                        id = aid,
+                        bookid = book.id,
+                        price = book.price,
+                        quantity = 1,
+                        userid = 1,
+
+                    });
+                }
+
+                else
+                {
+
+                    var addtocartinfo = Sqlbulider.GetValue<AddToCard>("bookid",id).FirstOrDefault();
+
+                    Sqlbulider.Update<AddToCard>(new AddToCard
+                    {
+                        id = addtocartinfo.id,
+                        bookid = book.id,
+                        price = book.price,
+                        quantity = (addtocartinfo.quantity+=1),
+                        userid = loginuser.id,
+
+                    });
+
+                }
+
             }
-
             ReLoadAddtoCard();
             return RedirectToAction(nameof(Index));
         }
