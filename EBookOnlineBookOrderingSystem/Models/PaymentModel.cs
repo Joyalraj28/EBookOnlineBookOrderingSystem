@@ -11,6 +11,8 @@ namespace EBookOnlineBookOrderingSystem.Models
     {
         [Range(1, int.MaxValue, ErrorMessage = "Card Number Required")]
         public int CardNo { get; set; }
+        public string AccountName { get; set; }
+        public Users Users { get; set; }
         public CardsInfo cardsinfo { get; set; }
         public MOrder mOrder { get; set; }
         public TOrder tOrder { get; set; }

@@ -11,6 +11,7 @@ using EBookOnlineBookOrderingSystem.Models.Table;
 using EBookOnlineBookOrderingSystem.Models.ViewModel;
 using EBookOnlineBookOrderingSystem.Service;
 using EBookOnlineBookOrderingSystem.Services;
+using Newtonsoft.Json;
 
 namespace EBookOnlineBookOrderingSystem.Controllers
 {
@@ -245,10 +246,17 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         {
             var book = Sqlbulider.GetValue<Book>("id", formCollection["bid"]).FirstOrDefault();
 
-            return RedirectToAction("Index","Payment", new PaymentModel { 
-            Amount = book.price * int.Parse(formCollection["BuyQuantity"]),
-                
-            
+
+            return RedirectToAction("Index", "Payment", new
+            {
+                payment = JsonConvert.SerializeObject(new PaymentModel
+                {
+                 Amount = book.price * int.Parse(formCollection["BuyQuantity"]),
+                    mOrder = new MOrder { id = 1, paymenttype = "Card" }
+
+
+
+                })
             });
         }
     }

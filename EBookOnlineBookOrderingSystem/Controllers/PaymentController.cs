@@ -1,4 +1,7 @@
-﻿using EBookOnlineBookOrderingSystem.Models;
+﻿using EBookOnlineBookOrderingSystem.Controls;
+using EBookOnlineBookOrderingSystem.Models;
+using EBookOnlineBookOrderingSystem.Models.Table;
+using EBookOnlineBookOrderingSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +13,31 @@ namespace EBookOnlineBookOrderingSystem.Controllers
     public class PaymentController : Controller
     {
         // GET: Payment
-        public ActionResult Index(PaymentModel payment=null)
+        public ActionResult Index(string payment=null)
         {
+            //payment.Users = SessionControls<Users>.GetValue("LoginUser");
+
             return View(payment);
+        }
+
+        public ActionResult PlaceOrder(FormCollection form)
+        {
+
+            int orderid = Sqlbulider.Count<MOrder>() + 1;
+
+            var Users = SessionControls<Users>.GetValue("LoginUser");
+
+            Sqlbulider.Add(new MOrder 
+            {
+                id = orderid,
+                price = double.Parse(form["Amount"]),
+                userid = Users.id,
+                paymenttype = "Cart"
+            });
+
+
+
+            return View();
         }
 
 
