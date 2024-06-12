@@ -8,6 +8,7 @@ namespace EBookOnlineBookOrderingSystem.Models.Procedure
     public class Spr_GetAddCardInfoByUser
     {
         public int adcardid { get; set; }
+        public int addcartQTY { get; set; }
         public int id { get; set; }
         public string name { get; set; }
         public int quantity { get; set; }

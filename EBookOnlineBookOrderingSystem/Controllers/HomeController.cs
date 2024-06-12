@@ -123,7 +123,9 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult BuyNow(string id)
         {
-            return View(new Buybook { });
+            var book = Sqlbulider.Procedure<Spr_GetBookInfo>(new { @bookid = id }).FirstOrDefault();
+           
+            return View(new Buybook { SelectBook = book });
         }
 
         public ActionResult Addtocard(string id)
@@ -141,7 +143,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                     var aid = Sqlbulider.Count<AddToCard>() + 1;
 
                     //Insert Add to card info in Database
-                    Sqlbulider.Add<AddToCard>(new AddToCard
+                    Sqlbulider.Add(new AddToCard
                     {
                         id = aid,
                         bookid = book.id,
@@ -233,5 +235,16 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         }
 
+        public ActionResult AddItem(string bid,string BuyQuantity)
+        {
+
+            return View();
+        }
+
+        public ActionResult PlaceOrder(FormCollection formCollection)
+        {
+
+            return RedirectToAction("Index","Payment");
+        }
     }
 }

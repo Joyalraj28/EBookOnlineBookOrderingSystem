@@ -169,6 +169,7 @@
                                                 {
                                                     <div id="AddCartItem">
                                                         <a id="bookname" href="@Url.Action("ViewBook","Home",new { id = cardinfo.id })">@cardinfo.name</a>
+                                                        <a>(@cardinfo.addcartQTY)</a>
                                                         <button onclick="DeleteConformation(@cardinfo.adcardid)" id="trash"><i class='fa fa-trash'></i></button>
 
                                                     </div>
@@ -196,7 +197,7 @@
     }
 
    
-    
+  @* Alert box *@ 
 <div class="alert-content">
 
     @if (TempData["DangerAlert"] != null)

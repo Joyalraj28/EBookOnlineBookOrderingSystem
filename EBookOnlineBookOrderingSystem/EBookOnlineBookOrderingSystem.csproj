@@ -1995,6 +1995,7 @@
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-solid-900.svg" />
     <Content Include="Content\FormStyleSheet.css" />
+    <Content Include="Content\Image\cardimg.jpg" />
     <Content Include="Content\Image\img.png" />
     <Content Include="Content\Image\BG.jpeg" />
     <Content Include="Content\Image\NoImg.png" />
@@ -2003,6 +2004,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Note\codedum.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\bootstrap-4.0.0\.editorconfig" />

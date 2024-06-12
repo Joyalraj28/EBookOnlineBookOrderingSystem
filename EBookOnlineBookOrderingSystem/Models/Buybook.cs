@@ -12,6 +12,6 @@ namespace EBookOnlineBookOrderingSystem.Models
     {
         public Spr_GetBookInfo SelectBook { get; set; }
         public int BuyQuantity { get; set; }
-
+        public List<Spr_GetBookInfo> Book { get; set; }
     }
 }
