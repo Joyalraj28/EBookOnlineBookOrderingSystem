@@ -243,8 +243,13 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult PlaceOrder(FormCollection formCollection)
         {
+            var book = Sqlbulider.GetValue<Book>("id", formCollection["bid"]).FirstOrDefault();
 
-            return RedirectToAction("Index","Payment");
+            return RedirectToAction("Index","Payment", new PaymentModel { 
+            Amount = book.price * int.Parse(formCollection["BuyQuantity"]),
+                
+            
+            });
         }
     }
 }

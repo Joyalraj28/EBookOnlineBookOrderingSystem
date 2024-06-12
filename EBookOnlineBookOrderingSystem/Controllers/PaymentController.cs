@@ -12,7 +12,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         // GET: Payment
         public ActionResult Index(PaymentModel payment=null)
         {
-            return View(new PaymentModel());
+            return View(payment);
         }
 
 

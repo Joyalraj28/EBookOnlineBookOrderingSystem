@@ -24,7 +24,6 @@
 	align-items: center;
 	min-height: 100vh;
 	padding: 25px;
-	background: #d6eef1;
 }
 
 .PayContainer form {
@@ -121,6 +120,17 @@ input::-webkit-outer-spin-button {
                     <h3 class="title">
                         Billing Address
                     </h3>
+
+                    <div class="inputBox">
+                        <label for="Amount">
+                            Amount:
+                        </label>
+                        @Html.TextBoxFor(model => model.Amount, "", new
+                   {
+                       placeholder = "00.00",
+                       required = true,
+                       @readonly = true })
+                    </div>
 
                     <div class="inputBox">
                         <label for="name">
@@ -266,9 +276,7 @@ input::-webkit-outer-spin-button {
     }
 
 <script>
-    let cardNumInput =
-        document.querySelector('#cardNum')
-
+    let cardNumInput = document.querySelector('#cardNum')
     cardNumInput.addEventListener('keyup', () => {
         let cNumber = cardNumInput.value
         cNumber = cNumber.replace(/\s/g, "")
