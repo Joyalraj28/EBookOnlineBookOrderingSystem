@@ -15,8 +15,9 @@ namespace EBookOnlineBookOrderingSystem.Models
         public Users Users { get; set; }
         public CardsInfo cardsinfo { get; set; }
         public MOrder mOrder { get; set; }
-        public TOrder tOrder { get; set; }
+        public List<TOrder> tOrder { get; set; }
         [Range(1, int.MaxValue, ErrorMessage = "Amount Required")]
         public double Amount { get; set; }
+        public string json { get; set; }
     }
 }

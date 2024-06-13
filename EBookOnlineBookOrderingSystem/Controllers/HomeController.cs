@@ -77,6 +77,8 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                 @userid = login.id
             }).ToList();
 
+
+
             SessionControls<List<Spr_GetAddCardInfoByUser>>.SetValue("AddToCardInfo", getAddCardInfo);
 
         }
@@ -242,20 +244,29 @@ namespace EBookOnlineBookOrderingSystem.Controllers
             return View();
         }
 
-        public ActionResult PlaceOrder(FormCollection formCollection)
+        public ActionResult PlaceOrder(FormCollection formCollection,PaymentModel payment)
         {
             var book = Sqlbulider.GetValue<Book>("id", formCollection["bid"]).FirstOrDefault();
 
+            var Morderid = Sqlbulider.Count<MOrder>() + 1;
+            var TorderId = Sqlbulider.Count<TOrder>() + 1;
 
             return RedirectToAction("Index", "Payment", new
             {
                 payment = JsonConvert.SerializeObject(new PaymentModel
                 {
-                 Amount = book.price * int.Parse(formCollection["BuyQuantity"]),
-                    mOrder = new MOrder { id = 1, paymenttype = "Card" }
-
-
-
+                    Amount = book.price * int.Parse(formCollection["BuyQuantity"]),
+                    mOrder = new MOrder { id = Morderid, paymenttype = "Card",paymentdate=DateTime.Now,Status=2 },
+                    Users = SessionControls<Users>.GetValue("LoginUser"),
+                    tOrder = new List<TOrder> {
+                    new TOrder(){
+                    id = TorderId,
+                    bookid = book.id,
+                    morderid = Morderid,
+                    price = book.price * int.Parse(formCollection["BuyQuantity"]),
+                    quantity = int.Parse(formCollection["BuyQuantity"])
+                    }
+                    }
                 })
             });
         }

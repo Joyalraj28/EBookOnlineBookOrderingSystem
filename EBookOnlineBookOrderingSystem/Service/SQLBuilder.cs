@@ -41,7 +41,7 @@ namespace EBookOnlineBookOrderingSystem.Services
                 if (val.GetValue(model) is DateTime datatime)
                 {
 
-                    data.Add("convert(datetime,'" + datatime.ToString() + "', 105)");
+                    data.Add("convert(datetime,'" + datatime.ToString() + "')");
                 }
                 else
                 {
@@ -72,7 +72,7 @@ namespace EBookOnlineBookOrderingSystem.Services
                 if (val.GetValue(model) is DateTime datatime)
                 {
 
-                    data.Add(val.Name + "= convert(datetime,'" + datatime.ToString() + "', 105)");
+                    data.Add(val.Name + "= convert(datetime,'" + datatime.ToString() + "')");
                 }
                 else
                 {

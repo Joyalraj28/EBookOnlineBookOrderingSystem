@@ -13,7 +13,9 @@ namespace EBookOnlineBookOrderingSystem.Models.Table
         public double price { get; set; }
         public string paymenttype { get; set; }
         public int userid { get; set; }
-        public int Feedback { get; set; }
+        public DateTime paymentdate { get; set; }
+        public int Status { get; set; }
+        public string Feedback { get; set; }
 
     }
 }

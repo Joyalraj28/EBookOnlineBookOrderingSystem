@@ -2,6 +2,7 @@
 using EBookOnlineBookOrderingSystem.Models;
 using EBookOnlineBookOrderingSystem.Models.Table;
 using EBookOnlineBookOrderingSystem.Services;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,29 +16,44 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         // GET: Payment
         public ActionResult Index(string payment=null)
         {
-            //payment.Users = SessionControls<Users>.GetValue("LoginUser");
-
-            return View(payment);
+            var pay = JsonConvert.DeserializeObject<PaymentModel>(payment);
+            pay.json = payment;
+            return View(pay);
         }
 
         public ActionResult PlaceOrder(FormCollection form)
         {
+            
+            PaymentModel payment = JsonConvert.DeserializeObject<PaymentModel>((form["json"]));
 
-            int orderid = Sqlbulider.Count<MOrder>() + 1;
-
-            var Users = SessionControls<Users>.GetValue("LoginUser");
-
-            Sqlbulider.Add(new MOrder 
+            if (payment.mOrder != null && payment.tOrder != null && payment.tOrder.Count > 0)
             {
-                id = orderid,
-                price = double.Parse(form["Amount"]),
-                userid = Users.id,
-                paymenttype = "Cart"
-            });
 
+                payment.mOrder.price = payment.Amount;
+                payment.mOrder.userid = payment.Users.id;
+                Sqlbulider.Add(payment.mOrder);
 
+                payment.tOrder.ForEach(torder =>
+                {
+                    if (torder != null)
+                    {
+                        Sqlbulider.Add(torder);
+                    }
+                });
 
-            return View();
+                TempData["SuccessAlert"] = "The order will be successfully placed";
+               
+            }
+
+            else
+            {
+               
+                TempData["DangerAlert"] = "Fail to place an order. Please try again";
+             
+
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
 

@@ -1,4 +1,7 @@
-﻿@model EBookOnlineBookOrderingSystem.Models.PaymentModel
+﻿@using Newtonsoft.Json;
+@using EBookOnlineBookOrderingSystem.Models;
+
+@model PaymentModel
 
 @{
     ViewBag.Title = "Index";
@@ -127,6 +130,7 @@ input::-webkit-outer-spin-button {
                             <label for="Amount">
                                 Amount:
                             </label>
+                            @Html.TextBoxFor(model => model.json, "", new { placeholder = "00.00", @readonly = true, type = "hidden" })
                             @Html.TextBoxFor(model => model.Amount, "", new { placeholder = "00.00", required = true, @readonly = true })
                             @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
                         </div>
@@ -135,7 +139,6 @@ input::-webkit-outer-spin-button {
                             <label for="name">
                                 Name:
                             </label>
-
                             @Html.TextBoxFor(model => model.Users.username, "", new { placeholder = "Enter your full name", required = true, @readonly = true })
                             @Html.ValidationMessageFor(model => model.Users.username, "", new { @class = "text-danger" })
                         </div>
