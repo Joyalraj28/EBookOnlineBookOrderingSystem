@@ -26,9 +26,9 @@
         <th>
             @Html.DisplayNameFor(model => model.Status)
         </th>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.Feedback)
-        </th>
+        </th>*@
         <th></th>
     </tr>
 
@@ -47,15 +47,15 @@
             @Html.DisplayFor(modelItem => item.paymentdate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Status)
+            @{ var val = item.Status == 1 ? "Complete" : item.Status == 2 ? "Pending" : "Cancel";}
+            <label>@val</label>
         </td>
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.Feedback)
-        </td>
+        </td>*@
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("View Order", "ViewOrder", new { id=item.id }) 
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.id })*@
         </td>
     </tr>
 }

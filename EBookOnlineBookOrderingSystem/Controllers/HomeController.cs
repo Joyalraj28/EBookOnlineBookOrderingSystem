@@ -124,6 +124,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
             return View(customBookModel);
         }
 
+        
         public ActionResult BuyNow(string id)
         {
             var book = Sqlbulider.Procedure<Spr_GetBookInfo>(new { @bookid = id }).FirstOrDefault();
@@ -244,6 +245,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
             return View();
         }
         
+       
         public ActionResult OrderList()
         {
             var loginuser = SessionControls<Users>.GetValue("LoginUser");
@@ -252,7 +254,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult ViewOrder(string id)
         {
-            return View();
+            return View(Sqlbulider.GetValue<TOrder>("morderid",id));
         }
 
         public ActionResult PlaceOrder(FormCollection formCollection,PaymentModel payment)
