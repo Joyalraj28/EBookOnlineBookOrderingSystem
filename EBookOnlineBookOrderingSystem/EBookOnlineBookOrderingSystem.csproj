@@ -2333,6 +2333,8 @@
     <Content Include="Views\Home\BuyNow.cshtml" />
     <Content Include="Views\Payment\Index.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Home\OrderList.cshtml" />
+    <Content Include="Views\Home\ViewOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

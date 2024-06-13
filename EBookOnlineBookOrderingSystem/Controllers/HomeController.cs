@@ -243,6 +243,17 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
             return View();
         }
+        
+        public ActionResult OrderList()
+        {
+            var loginuser = SessionControls<Users>.GetValue("LoginUser");
+            return View(Sqlbulider.GetValue<MOrder>("userid", loginuser.id.ToString()));
+        }
+
+        public ActionResult ViewOrder(string id)
+        {
+            return View();
+        }
 
         public ActionResult PlaceOrder(FormCollection formCollection,PaymentModel payment)
         {

@@ -121,6 +121,9 @@
             color: indianred;
             justify-content: center;
         }
+
+
+
     </style>
 </head>
 <body>
@@ -174,9 +177,9 @@
 
                                                     </div>
                                                 }
-                                            <div id="AddCartItem">
-                                              @Url.ActionLink("ViewMoreAllAddtoCart","Home",new { id = LoginUser.id })"
-                                            </div>
+                                                <div id="AddCartItem">
+                                                    @Url.Action("ViewMoreAllAddtoCart", "Home", new { id = LoginUser.id })
+                                                </div>
                                             </div>
                                         </div>
                                     }
@@ -184,6 +187,13 @@
                                     {
                                         <button class="dropbtn"><i class='fas fa-shopping-cart'></i> (0)</button>
                                     }
+
+                                    if (SessionControls<bool>.GetValue("IsOrder") is bool orders && orders)
+                                    {
+                                    <div class="dropdown" style="display:flex;justify-content:center;">
+                                        <a href="@Url.Action("OrderList","Home")" class="dropbtn"><i class="fas fa-shipping-fast"></i></a>
+                                    </div>
+                                   }
 
                                 }
                                 else

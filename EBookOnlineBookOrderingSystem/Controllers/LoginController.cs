@@ -40,6 +40,8 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                 }
 
 
+                SessionControls<bool>.SetValue("IsOrder", Sqlbulider.Count<MOrder>() > 0);
+
                 SessionControls<Users>.SetValue("LoginUser", login.FirstOrDefault());
                 return RedirectToAction("Index", "Home");
             }
