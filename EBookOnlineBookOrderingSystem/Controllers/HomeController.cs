@@ -60,7 +60,6 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                 Books = pagevieemodel
             });
         }
-
         public ActionResult PageMove(string PageNumber)
         {
             return RedirectToAction("Index", new
@@ -85,6 +84,12 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult DeleteAddCartBook(string id)
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             //Delete item
             Sqlbulider.Delete<AddToCard>(int.Parse(id));
         
@@ -96,6 +101,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult ViewBook(string id)
         {
+
             var selectbook = Sqlbulider.Procedure<Spr_GetBookInfo>(new {
                 @bookid = id
             }).FirstOrDefault();
@@ -127,6 +133,13 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         
         public ActionResult BuyNow(string id)
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
+
             var book = Sqlbulider.Procedure<Spr_GetBookInfo>(new { @bookid = id }).FirstOrDefault();
            
             return View(new Buybook { SelectBook = book });
@@ -134,6 +147,13 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult Addtocard(string id)
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             var book = Sqlbulider.GetValue<Book>("id", id).FirstOrDefault();
 
            var isanlreadyexits = Sqlbulider.GetValue<AddToCard>("bookid", id);
@@ -196,6 +216,13 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult Signout()
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             SessionControls<Users>.ClearValue("LoginUser");
             SessionControls<Spr_GetAddCardInfoByUser>.ClearValue("AddToCardInfo");
             return RedirectToAction(nameof(Index));
@@ -241,6 +268,11 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult AddItem(string bid,string BuyQuantity)
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
 
             return View();
         }
@@ -248,17 +280,37 @@ namespace EBookOnlineBookOrderingSystem.Controllers
        
         public ActionResult OrderList()
         {
+            if(!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             var loginuser = SessionControls<Users>.GetValue("LoginUser");
             return View(Sqlbulider.GetValue<MOrder>("userid", loginuser.id.ToString()));
         }
 
         public ActionResult ViewOrder(string id)
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             return View(Sqlbulider.GetValue<TOrder>("morderid",id));
         }
 
         public ActionResult PlaceOrder(FormCollection formCollection,PaymentModel payment)
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             var book = Sqlbulider.GetValue<Book>("id", formCollection["bid"]).FirstOrDefault();
 
             var Morderid = Sqlbulider.Count<MOrder>() + 1;

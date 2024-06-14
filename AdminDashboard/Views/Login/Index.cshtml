@@ -1,0 +1,56 @@
+﻿@model AdminDashboard.Models.Table.Users
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="Login-main">
+    <div class="Login-body">
+        <div class="Login-container" id="container">
+            <div class="form-container sign-in-container">
+                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                {
+                    <h1>Login</h1>
+
+                    if (TempData["IsLoginFail"] != null && TempData["IsLoginFail"] is bool e && e)
+                    {
+
+                        <div id="LoginFail">
+                            <label>Invalid Email or Password</label>
+                        </div>
+                    }
+
+                    @Html.TextBoxFor(User => User.email, new { @placeholder = "Email" })
+                    @Html.TextBoxFor(User => User.password, new { @placeholder = "Password", @type = "password" })
+                    <a href="#">Forgot your password?</a>
+                    <input type="submit" value="Login" />
+                    @Html.ActionLink("Register", "Register", null, htmlAttributes: new { id = "Register-button" })
+
+
+                    @*<div class="ActionLogin-btn-link">
+                        @Html.ActionLink("Register", "Register")
+                            </div>*@
+
+                }
+            </div>
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Welcome Back!</h1>
+                        <p>To keep connected with us please login with your personal info</p>
+                        <button class="ghost" id="signIn">Sign In</button>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Welcome to EBook</h1>
+                        <p>Make wonderfull day one Book</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

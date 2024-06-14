@@ -1,4 +1,5 @@
-﻿using AdminDashboard.Models;
+﻿using AdminDashboard.Controls;
+using AdminDashboard.Models;
 using AdminDashboard.Models.Table;
 using AdminDashboard.Models.ViewModel;
 using AdminDashboard.Services;
@@ -14,6 +15,12 @@ namespace AdminDashboard.Controllers
     {
         public ActionResult Index()
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
 
             List<OverviewCountBoxmodel> _overviewCountBox = new List<OverviewCountBoxmodel>();
 
@@ -59,18 +66,6 @@ namespace AdminDashboard.Controllers
             });
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
+        
     }
 }

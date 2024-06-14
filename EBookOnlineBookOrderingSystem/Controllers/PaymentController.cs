@@ -16,6 +16,12 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         // GET: Payment
         public ActionResult Index(string payment=null)
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             var pay = JsonConvert.DeserializeObject<PaymentModel>(payment);
             pay.json = payment;
             return View(pay);
@@ -23,7 +29,13 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult PlaceOrder(FormCollection form)
         {
-            
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             PaymentModel payment = JsonConvert.DeserializeObject<PaymentModel>((form["json"]));
 
             if (payment.mOrder != null && payment.tOrder != null && payment.tOrder.Count > 0)

@@ -20,12 +20,26 @@ namespace AdminDashboard.Controllers
         // GET: Book
         public ActionResult Index(int PageNumber = 1)
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
+
             PaginationViewModel<Spr_GetBookInfo> pagination = new PaginationViewModel<Spr_GetBookInfo>(Sqlbulider.Procedure<Spr_GetBookInfo>().ToList(),4);
             return View(pagination.GetPageItem(PageNumber));
         }
 
         public ActionResult PageMove(string PageNumber)
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
+
             return RedirectToAction("Index", new
             {
                 PageNumber = int.Parse(PageNumber)
@@ -36,6 +50,13 @@ namespace AdminDashboard.Controllers
         // GET: Book/Details/5
         public ActionResult Details(int id)
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
 
             var book = Sqlbulider.Procedure<Spr_GetBookInfo>(new { @bookid = id }).FirstOrDefault();
             if (book.bookimg != null)
@@ -62,6 +83,14 @@ namespace AdminDashboard.Controllers
         // GET: Book/Create
         public ActionResult Create()
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
+
             var Autors = new List<SelectListItem>();
             //Get all Autors
             Sqlbulider.Get<Author>().ToList().ForEach(a => 
@@ -94,7 +123,14 @@ namespace AdminDashboard.Controllers
         {
             try
             {
-                
+
+                if (!ViewConfig.IsUserLogin)
+                {
+                    TempData["snackbar"] = "Login is Required";
+                    return RedirectToAction("Index", "Login");
+                }
+
+
                 object parm = null;
                 // TODO: Add insert logic here
                 if (model.ImageFile != null)
@@ -130,6 +166,14 @@ namespace AdminDashboard.Controllers
         // GET: Book/Edit/5
         public ActionResult Edit(int id)
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
+
             //Get book
             var book = Sqlbulider.GetValue<Book>("id", id.ToString()).FirstOrDefault();
 
@@ -182,6 +226,13 @@ namespace AdminDashboard.Controllers
         {
             try
             {
+                if (!ViewConfig.IsUserLogin)
+                {
+                    TempData["snackbar"] = "Login is Required";
+                    return RedirectToAction("Index", "Login");
+                }
+
+
                 object parm = null;
                 // TODO: Add update logic here
                 if (model.ImageFile != null)
@@ -217,6 +268,14 @@ namespace AdminDashboard.Controllers
         {
             try
             {
+
+                if (!ViewConfig.IsUserLogin)
+                {
+                    TempData["snackbar"] = "Login is Required";
+                    return RedirectToAction("Index", "Login");
+                }
+
+
                 Sqlbulider.Delete<Book>(id);
                 TempData["snackbar"] = "Successfully delete Book details";
                 return View();
@@ -236,6 +295,13 @@ namespace AdminDashboard.Controllers
             try
             {
                 // TODO: Add delete logic here
+                if (!ViewConfig.IsUserLogin)
+                {
+                    TempData["snackbar"] = "Login is Required";
+                    return RedirectToAction("Index", "Login");
+                }
+
+
 
                 return RedirectToAction("Index");
             }

@@ -1819,6 +1819,7 @@
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\Login_StyleSheet.css" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\Pagination\simplePagination.min.css" />
     <Content Include="favicon.ico" />
@@ -1927,11 +1928,11 @@
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Customer\" />
-    <Folder Include="Views\Login\" />
     <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>

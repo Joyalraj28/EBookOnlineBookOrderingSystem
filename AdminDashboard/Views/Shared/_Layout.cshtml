@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using AdminDashboard.Controls;
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -15,7 +18,6 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-
         }
 
         .navbar {
@@ -40,20 +42,18 @@
             display: flex;
             font-size: 25px;
         }
-        .logo h1 {
-            margin: 0;
-           
-        }
+
+            .logo h1 {
+                margin: 0;
+            }
 
         .login {
             display: flex;
             align-items: center;
-            
         }
 
             .login label {
                 margin-right: 0.5em;
-          
             }
 
             .login input[type="text"], .login input[type="password"] {
@@ -90,49 +90,53 @@
 
 
     <div id="snackbar">Notification Message</div>
+    @if (ViewConfig.IsShowNavigationBar)
+    {
+        <div class="container">
+            <div class="SiteBar">
 
-    <div class="container">
-        <div class="SiteBar">
+                <ul>
+                    <li>@Html.ActionLink("Overview", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Book Management", "Index", "Book")</li>
+                    <li>@Html.ActionLink("Author Management", "Index", "Author")</li>
+                    <li>@Html.ActionLink("Category Management", "Index", "Category")</li>
+                    <li>@Html.ActionLink("Order Managemet", "Index", "Order")</li>
+                    <li>@Html.ActionLink("Customer Managemet", "Index", "Customer")</li>
+                </ul>
 
-            <ul>
-                <li>@Html.ActionLink("Overview", "Index", "Home")</li>
-                <li>@Html.ActionLink("Book Management", "Index", "Book")</li>
-                <li>@Html.ActionLink("Author Management", "Index", "Author")</li>
-                <li>@Html.ActionLink("Category Management", "Index", "Category")</li>
-                <li>@Html.ActionLink("Order Managemet", "Index", "Order")</li>
-                <li>@Html.ActionLink("Customer Managemet", "Index", "Customer")</li>
-            </ul>
+            </div>
 
+
+            <div class="body-content">
+
+                @RenderBody()
+            </div>
         </div>
+    }
 
 
-        <div class="body-content">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - EBook Admin Dashbord</p>
 
-            @RenderBody()
-        </div>
-    </div>
-    <footer>
-        <p>&copy; @DateTime.Now.Year - EBook Admin Dashbord</p>
-
-    </footer>
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    <script>
-        $("document").ready(function () {
-            $("#Search-Input").on("keyup", function () {
-                var value = $(this).val().toLowerCase();
-                $("#Search-Table tr").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        </footer>
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+        <script>
+            $("document").ready(function () {
+                $("#Search-Input").on("keyup", function () {
+                    var value = $(this).val().toLowerCase();
+                    $("#Search-Table tr").filter(function () {
+                        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                    });
                 });
             });
-        });
 
-    </script>
+        </script>
 
-    @{ if (TempData["snackbar"] != null)
-        {
-            <script>
+        @{ if (TempData["snackbar"] != null)
+            {
+                <script>
             $("document").ready(function ()
             {
                // Show the snack bar
@@ -142,24 +146,24 @@
 
            });
 
-            </script>
+                </script>
 
-            TempData["snackbar"] = null;
+                TempData["snackbar"] = null;
+            }
         }
-    }
 
 
-    <script>
-        $("document").ready(function () {
+        <script>
+            $("document").ready(function () {
 
-            // Set timeout to hide the snack bar after 3 seconds (adjust as needed)
-            setTimeout(function () {
-                $('#snackbar').removeClass('show');
-            }, 3000); // 3000 milliseconds = 3 seconds
-        });
-    </script>
+                // Set timeout to hide the snack bar after 3 seconds (adjust as needed)
+                setTimeout(function () {
+                    $('#snackbar').removeClass('show');
+                }, 3000); // 3000 milliseconds = 3 seconds
+            });
+        </script>
 
 
 
-</body>
+    </body>
 </html>

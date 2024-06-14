@@ -26,6 +26,7 @@ namespace AdminDashboard
                       "~/Content/CommonStyles/DashbordStyleSheet.css",
                       "~/Content/CommonStyles/FormStyleSheet.css",
                       "~/Content/fontawesome_5.15.4/css/all.min.css",
+                      "~/Content/Login_StyleSheet.css",
                       "~/Content/CommonStyles/TableStyleSheet.css"));
 
             bundles.Add(new StyleBundle("~/Content/Home/css").Include(

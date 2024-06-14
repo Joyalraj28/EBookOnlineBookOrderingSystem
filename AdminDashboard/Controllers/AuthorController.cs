@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AdminDashboard.Controls;
 using AdminDashboard.Models.Table;
 using AdminDashboard.Services;
 
@@ -13,18 +14,38 @@ namespace AdminDashboard.Controllers
         // GET: Author
         public ActionResult Index()
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             return View(Sqlbulider.Get<Author>());
         }
 
         // GET: Author/Details/5
         public ActionResult Details(int id)
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
         // GET: Author/Create
         public ActionResult Create()
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
@@ -32,6 +53,14 @@ namespace AdminDashboard.Controllers
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
+
             try
             {
                 // TODO: Add insert logic here
@@ -57,6 +86,13 @@ namespace AdminDashboard.Controllers
         // GET: Author/Edit/5
         public ActionResult Edit(int id)
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             var author = Sqlbulider.GetValue<Author>("id", id.ToString()).FirstOrDefault();
             return View(author);
         }
@@ -67,6 +103,13 @@ namespace AdminDashboard.Controllers
         {
             try
             {
+
+                if (!ViewConfig.IsUserLogin)
+                {
+                    TempData["snackbar"] = "Login is Required";
+                    return RedirectToAction("Index", "Login");
+                }
+
                 // TODO: Add update logic here
                 Sqlbulider.Update(new Author
                 {
@@ -88,6 +131,13 @@ namespace AdminDashboard.Controllers
         // GET: Author/Delete/5
         public ActionResult Delete(int id)
         {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
@@ -98,6 +148,13 @@ namespace AdminDashboard.Controllers
             try
             {
                 // TODO: Add delete logic here
+
+                if (!ViewConfig.IsUserLogin)
+                {
+                    TempData["snackbar"] = "Login is Required";
+                    return RedirectToAction("Index", "Login");
+                }
+
 
                 return RedirectToAction("Index");
             }

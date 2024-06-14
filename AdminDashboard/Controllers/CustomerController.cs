@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminDashboard.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,18 +12,38 @@ namespace AdminDashboard.Controllers
         // GET: Customer
         public ActionResult Index()
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
+
             return View();
         }
 
         // GET: Customer/Details/5
         public ActionResult Details(int id)
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
         // GET: Customer/Create
         public ActionResult Create()
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
+
             return View();
         }
 
@@ -33,6 +54,11 @@ namespace AdminDashboard.Controllers
             try
             {
                 // TODO: Add insert logic here
+                if (!ViewConfig.IsUserLogin)
+                {
+                    TempData["snackbar"] = "Login is Required";
+                    return RedirectToAction("Index", "Login");
+                }
 
                 return RedirectToAction("Index");
             }
@@ -45,6 +71,12 @@ namespace AdminDashboard.Controllers
         // GET: Customer/Edit/5
         public ActionResult Edit(int id)
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
@@ -55,6 +87,11 @@ namespace AdminDashboard.Controllers
             try
             {
                 // TODO: Add update logic here
+                if (!ViewConfig.IsUserLogin)
+                {
+                    TempData["snackbar"] = "Login is Required";
+                    return RedirectToAction("Index", "Login");
+                }
 
                 return RedirectToAction("Index");
             }
@@ -67,6 +104,12 @@ namespace AdminDashboard.Controllers
         // GET: Customer/Delete/5
         public ActionResult Delete(int id)
         {
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["snackbar"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
             return View();
         }
 
@@ -77,6 +120,11 @@ namespace AdminDashboard.Controllers
             try
             {
                 // TODO: Add delete logic here
+                if (!ViewConfig.IsUserLogin)
+                {
+                    TempData["snackbar"] = "Login is Required";
+                    return RedirectToAction("Index", "Login");
+                }
 
                 return RedirectToAction("Index");
             }
