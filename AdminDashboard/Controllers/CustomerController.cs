@@ -9,6 +9,11 @@ namespace AdminDashboard.Controllers
 {
     public class CustomerController : Controller
     {
+        public CustomerController()
+        {
+            ViewConfig.IsShowNavigationBar = true;
+        }
+
         // GET: Customer
         public ActionResult Index()
         {

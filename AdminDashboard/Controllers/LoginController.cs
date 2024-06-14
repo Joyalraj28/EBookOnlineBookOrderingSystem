@@ -16,7 +16,6 @@ namespace AdminDashboard.Controllers
         {
             ViewConfig.IsShowNavigationBar = false;
 
-            var i = Sqlbulider.Get<Users>();
             return View();
         }
 

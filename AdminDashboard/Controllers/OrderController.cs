@@ -9,6 +9,11 @@ namespace AdminDashboard.Controllers
 {
     public class OrderController : Controller
     {
+        public OrderController()
+        {
+            ViewConfig.IsShowNavigationBar = true;
+        }
+
         // GET: Order
         public ActionResult Index()
         {

@@ -1,90 +1,96 @@
-﻿body {
+﻿/* Basic Reset */
+* {
     margin: 0;
-    display:inline;
-    
-
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.Logo{
-    display:flex;
-    flex-direction:column;
-    text-align:center;
-    justify-content:center;
-    
-}
-
-.Logo > label{
-    color:white;
-    font-size:30px;
-}
-
+/* Layout */
 .container {
-    width: 100vw;
+    display: grid;
+    grid-template-areas:
+        "topbar topbar"
+        "sidebar content"
+        "footer footer";
+    grid-template-rows: 60px 1fr 40px;
+    grid-template-columns: 200px 1fr;
     height: 100vh;
-    display:flex;
 }
 
-.SiteBar {
+.topbar {
+    grid-area: topbar;
+    background-color: #333;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+
+}
+
+.sidebar {
+    grid-area: sidebar;
     background-color: black;
-    margin:0;
-    width: 20%;
-    height: 100vh;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    color: white;
+    padding: 20px;
 }
 
-.SiteBar  li{
-    text-decoration:none;
+.sidebar nav ul {
+        list-style-type: none;
 }
 
-.body-content {
-    display:flex;
-    flex-direction:column;
-    justify-content:start;
-    align-content:center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+.sidebar nav ul li {
+     margin: 20px 0;
 }
 
-.body-content > div {
-     padding:25px;
-     width:100vw;
-     height:100%;
-
+.sidebar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
 }
-
-
-
-
-.SiteBar > ul > li {
-    font-size: 20px;
-    margin: 10px
-}
-
-.SiteBar > ul > li > a {
-        text-decoration: none;
-        color:white
-}
-
 
 .content {
-    margin: 20px;
-    margin-top:80px;
-    height: 180px;
-
+    grid-area: content;
+    padding: 20px;
+    background-color: #f0f0f0;
 }
 
 footer {
-    position: absolute;
-    height: 10vh;
-    width: 100vw;
-    padding: 10px;
-    background-color: dimgrey;
+    grid-area: footer;
+    background-color: dimgray;
     color: white;
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    height:80px;
 }
 
+footer p{
+    margin:5px;
+    }
+
+.without-content {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex: 1;
+    padding: 80px 20px 60px 20px; /* Space for topbar and footer */
+    background-color: #f0f0f0;
+    overflow-y: auto;
+    width: 100vw;
+    height: 100%;
+    overflow: hidden
+}
+
+.login{
+    position:absolute;
+    display:flex;
+    justify-content:end;
+    left:95vw;
+}
 
 #snackbar {
     visibility: hidden; /* Hidden by default */
-    width:350px;
+    width: 350px;
     min-width: 250px; /* Set a default minimum width */
     margin-left: 40px; /* Divide the width by 2 */
     background-color: #333; /* Dark grey background */

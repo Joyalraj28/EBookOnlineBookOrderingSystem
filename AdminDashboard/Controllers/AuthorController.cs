@@ -11,6 +11,11 @@ namespace AdminDashboard.Controllers
 {
     public class AuthorController : Controller
     {
+        public AuthorController()
+        {
+            ViewConfig.IsShowNavigationBar = true;
+        }
+
         // GET: Author
         public ActionResult Index()
         {

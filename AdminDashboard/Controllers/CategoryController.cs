@@ -11,6 +11,11 @@ namespace AdminDashboard.Controllers
 {
     public class CategoryController : Controller
     {
+        public CategoryController()
+        {
+            ViewConfig.IsShowNavigationBar = true;
+        }
+
         // GET: Category
         public ActionResult Index()
         {

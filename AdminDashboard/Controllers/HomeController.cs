@@ -13,6 +13,10 @@ namespace AdminDashboard.Controllers
 {
     public class HomeController : Controller
     {
+        public HomeController()
+        {
+            ViewConfig.IsShowNavigationBar = true;
+        }
         public ActionResult Index()
         {
             if (!ViewConfig.IsUserLogin)

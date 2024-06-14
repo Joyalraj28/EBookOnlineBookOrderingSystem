@@ -15,7 +15,10 @@ namespace AdminDashboard.Controllers
 {
     public class BookController : Controller
     {
-
+        public BookController()
+        {
+            ViewConfig.IsShowNavigationBar = true;
+        }
     
         // GET: Book
         public ActionResult Index(int PageNumber = 1)
