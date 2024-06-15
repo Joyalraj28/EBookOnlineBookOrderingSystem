@@ -335,5 +335,27 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                 })
             });
         }
+
+        public ActionResult ViewMoreAllAddtoCart()
+        {
+
+            if (!ViewConfig.IsUserLogin)
+            {
+                TempData["DangerAlert"] = "Login is Required";
+                return RedirectToAction("Index", "Login");
+            }
+
+            var user = SessionControls<Users>.GetValue("LoginUser");
+
+            PlaceAddToCardItems placeAddToCardItems = new PlaceAddToCardItems();
+            placeAddToCardItems.AddToCardItems = new List<PlaceAddToCardItem>();
+              Sqlbulider.Procedure<Spr_GetAddCardInfoByUser>(new { @userid = user.id }).ToList().ForEach(data =>
+              {
+                  placeAddToCardItems.AddToCardItems.Add(new PlaceAddToCardItem { AddToCard = data}); 
+              });
+
+
+            return View(placeAddToCardItems);
+        }
     }
 }

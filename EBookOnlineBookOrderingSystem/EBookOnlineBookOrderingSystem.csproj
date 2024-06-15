@@ -136,6 +136,7 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\MainLayoutModel.cs" />
     <Compile Include="Models\PaymentModel.cs" />
+    <Compile Include="Models\PlaceAddToCardItems.cs" />
     <Compile Include="Models\Procedure\Spr_GetAddCardInfoByUser.cs" />
     <Compile Include="Models\Procedure\Spr_GetBookInfo.cs" />
     <Compile Include="Models\Table\AddToCard.cs" />
@@ -2335,6 +2336,7 @@
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Home\OrderList.cshtml" />
     <Content Include="Views\Home\ViewOrder.cshtml" />
+    <Content Include="Views\Home\ViewMoreAllAddtoCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
