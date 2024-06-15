@@ -1,4 +1,6 @@
-﻿using Microsoft.Reporting.WebForms;
+﻿using AdminDashboard.Models.Procedure;
+using Microsoft.Reporting.WebForms;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,17 +12,17 @@ namespace AdminDashboard.Controllers
     public class ReportController : Controller
     {
         // GET: Report
-        public ActionResult Index(string ReportName,List<object> list)
+        public ActionResult ViewReport(string ReportName,string list)
         {
             LocalReport localReport = new LocalReport();
-            localReport.ReportPath = Server.MapPath($"~/Reports/{ReportName}.rdlc");
+            localReport.ReportPath = Server.MapPath($"~/Report/{ReportName}.rdlc");
 
             // you may comment dbContext if the report is static or needs no DB-connection
             //using (dbContext db = new dbContext())
             //{
 
 
-            ReportDataSource User = new ReportDataSource(ReportName, list);
+            ReportDataSource User = new ReportDataSource(ReportName, JsonConvert.DeserializeObject<List<Spr_GetOrderInfo>>(list));
             localReport.DataSources.Add(User);
 
 

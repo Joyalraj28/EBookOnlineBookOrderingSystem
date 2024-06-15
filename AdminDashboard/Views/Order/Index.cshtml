@@ -4,7 +4,38 @@
     ViewBag.Title = "Index";
 }
 
-<h2>List of Order</h2>
+<style>
+    #heading{
+        margin:10px;
+    }
+    #Controls{
+        margin:10px;
+        display:flex;
+        flex-flow:row-reverse;
+    }
+
+    #PrintBtn{
+        background-color:dodgerblue;
+        padding:10px;
+        color:white;
+        font-weight:bold;
+        border:none;
+        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        text-decoration:none;
+    }
+</style>
+
+
+<h2 id="heading">List of Order</h2>
+
+<div id="Controls">
+    <a href="@Url.Action("PrintOrder","Order")" target="_blank" id="PrintBtn">
+        <i class='fas fa-print'></i>
+        Print
+    </a>
+ 
+  
+</div>
 
 <div id="scroll-container" class="comman-table">
     <table class="table">

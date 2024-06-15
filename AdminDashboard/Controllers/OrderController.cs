@@ -2,6 +2,7 @@
 using AdminDashboard.Models.Procedure;
 using AdminDashboard.Services;
 using Microsoft.Reporting.WebForms;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -154,6 +155,10 @@ namespace AdminDashboard.Controllers
             }
         }
 
-        
+        public ActionResult PrintOrder()
+        {
+            var listjson = JsonConvert.SerializeObject(Sqlbulider.Procedure<Spr_GetOrderInfo>().ToList());
+            return RedirectToAction("ViewReport", "Report", new { ReportName = "OrderReport",  list = listjson });
+        }
     }
 }
