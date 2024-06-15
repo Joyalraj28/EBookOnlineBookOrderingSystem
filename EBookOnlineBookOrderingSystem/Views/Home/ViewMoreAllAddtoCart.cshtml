@@ -7,71 +7,87 @@
 <h2>ViewMoreAllAddtoCart</h2>
 
 <style>
-    .disable-border{
-        border-color:transparent;
+    .disable-border {
+        border-color: transparent;
     }
-    .disable-border:active {
+
+        .disable-border:active {
             border-color: transparent;
-    }
+        }
 </style>
 
-<p>
-    @Html.ActionLink("Palce order", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            <input 
-             data-val="true"
-             @*data-val-required="The isActive field is required."*@
-             id="isActiveAll"
-             name="isActiveAll"
-             type="checkbox" />
-        </th>
-        <th>
-            ID
-        </th>
 
-        <th>
-            Book Name
-        </th>
-        <th>
-            Quantity
-        </th>
+@using (Html.BeginForm("PlaceOrderAddToCart", "Home", FormMethod.Post))
+{
+    <input type="submit" value="Place order" />
 
-        <th>
-            Price
-        </th>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <input data-val="true"
+                           id="isActiveAll"
+                           name="isActiveAll"
+                           onclick="toggleCheckboxes(this)"
+                           type="checkbox" />
+                     <input name="AddToCardCount" value="@Model.AddToCardItems.Count" type="hidden" />
+                </th>
+                <th>
+                    ID
+                </th>
 
-        <th></th>
-    </tr>
+                <th>
+                    Book Name
+                </th>
+                <th>
+                    Quantity
+                </th>
 
-@foreach (var item in Model.AddToCardItems) {
-<tr>
+                <th>
+                    Price
+                </th>
 
-    <td>
-        <input data-val="true"
-               id="isActive"
-               name="isActive"
-               type="checkbox"
-               value="@item.IsActive" />
-    </td>
+                <th></th>
+            </tr>
 
-    <td>
-        @Html.TextBoxFor(modelItem => item.AddToCard.id, htmlAttributes: new { @readonly = true, @class = "disable-border", Style = "width:20px;" })
-    </td>
-    <td>
-        @Html.TextBoxFor(modelItem => item.AddToCard.name, htmlAttributes: new { @readonly = true, @class = "disable-border", Style = "width:200px;" })
-    </td>
-    <td>
-        @Html.TextBoxFor(modelItem => item.AddToCard.quantity, htmlAttributes: new { @readonly = true, @class = "disable-border", Style = "width:25px;" })
-    </td>
-    <td>
-        @{ var totalprice = item.AddToCard.price * item.AddToCard.quantity; }
-        <label>@totalprice</label>
-    </td>
-</tr>
-}
+            </thead>
 
-</table>
+        <tbody>
+           
+            @foreach (var item in Model.AddToCardItems)
+            {
+                <tr>
+
+                    <td>
+                        <input data-val="true"
+                               id="isActive"
+                               name="[@item.CheckID]isActive"
+                               type="checkbox"
+                               onclick="updateMasterCheckbox()"
+                               value="@item.CheckID" />
+                    </td>
+
+                    <td>
+                        
+                        <input name="[@item.CheckID]bid" value="@item.AddToCard.id" readonly class="disable-border" />
+                        @*@Html.TextBoxFor(modelItem => item.AddToCard.id, htmlAttributes: new { @readonly = true, @class = "disable-border", Style = "width:20px;", @name = "[" + @item.CheckID + "]id" })*@
+                    </td>
+                    <td>
+                        <input name="[@item.CheckID]name" value="@item.AddToCard.name" readonly class="disable-border" />
+                        @*@Html.TextBoxFor(modelItem => item.AddToCard.name, htmlAttributes: new { @readonly = true, @class = "disable-border", Style = "width:200px;", name = "[" + @item.CheckID + "]name" })*@
+                    </td>
+                    <td>
+                        <input name="[@item.CheckID]addcartQTY" value="@item.AddToCard.addcartQTY" readonly class="disable-border" />
+                        @*@Html.TextBoxFor(modelItem => item.AddToCard.addcartQTY, htmlAttributes: new { @readonly = true, @class = "disable-border", Style = "width:25px;", name = "[" + @item.CheckID + "]addcartQTY" })*@
+                    </td>
+                    <td>
+                        @{ var totalprice = item.AddToCard.price * item.AddToCard.addcartQTY; }
+                        <input name="[@item.CheckID]totalprice" value="@totalprice" readonly class="disable-border"/>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>        
+   
+    }
 

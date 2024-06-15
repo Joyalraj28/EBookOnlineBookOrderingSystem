@@ -7,6 +7,7 @@ using System.Web;
 
 namespace EBookOnlineBookOrderingSystem.Models
 {
+
     public class PaymentModel
     {
         [Range(1, int.MaxValue, ErrorMessage = "Card Number Required")]
@@ -19,5 +20,6 @@ namespace EBookOnlineBookOrderingSystem.Models
         [Range(1, int.MaxValue, ErrorMessage = "Amount Required")]
         public double Amount { get; set; }
         public string json { get; set; }
+        public bool IsAdToCard { get; set; }
     }
 }

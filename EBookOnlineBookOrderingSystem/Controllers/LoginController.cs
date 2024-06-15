@@ -20,7 +20,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         // GET: Login
         public ActionResult Index()
         {
-           var data = TempData["IsLoginFail"];
+            TempData["IsLoginFail"]=false;
             return View();
         }
 
@@ -55,6 +55,15 @@ namespace EBookOnlineBookOrderingSystem.Controllers
         public ActionResult Register()
         {
             return View();
+        }
+
+        public ActionResult SaveReister(FormCollection formCollection)
+        {
+            TempData["RegisterValidation"] = "";
+
+            
+
+            return RedirectToAction("login");
         }
     }
 }

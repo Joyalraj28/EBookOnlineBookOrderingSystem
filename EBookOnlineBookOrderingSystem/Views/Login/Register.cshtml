@@ -11,28 +11,32 @@
     <div class="Login-body">
         <div class="Login-container" id="container">
             <div class="form-container sign-in-container">
-                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+                @using (Html.BeginForm("SaveReister", "Login", FormMethod.Post))
                 {
                     <h1>Register</h1>
 
-                    if (TempData["IsLoginFail"] != null && TempData["IsLoginFail"] is bool e && e)
+
+
+                    @if (TempData["RegisterValidation"] != null)
                     {
-
-                        <div id="LoginFail">
-                            <label>Invalid Email or Password</label>
-                        </div>
+                    <div id="LoginFail">
+                        <label>$TempData["RegisterValidation"]</label>
+                    </div>
                     }
-
-                    @*<div id="LoginFail">
-                        <label>Invalid register input</label>
-                    </div>*@
 
                     @Html.TextBoxFor(User => User.username, new { @placeholder = "Username" })
                     @Html.TextBoxFor(User => User.password, new { @placeholder = "Password", @type = "password" })
                     @Html.TextBoxFor(User => User.password, new { @placeholder = "Re-Password", @type = "password" })
                     @Html.TextBoxFor(User => User.email, new { @placeholder = "Email" })
                     <input type="submit" value="Register" />
-                    <input id="Cancel" type="submit" value="Cancel" />
+                    <button id="Cancel" onclick="Cancel()">Cancel</button>
+
+                    <script>
+                        function Cancel() {
+                            window.location.replace = "@Url.Action("Index", "Login")";
+                        }
+                    </script>
+
                     @*<div class="ActionLogin-btn-link">
             @Html.ActionLink("Register", "Register")
                 </div>*@

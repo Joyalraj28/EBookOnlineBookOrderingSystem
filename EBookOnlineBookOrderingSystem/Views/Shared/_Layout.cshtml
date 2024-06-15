@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - E Book</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
@@ -20,18 +20,15 @@
         }
 
         .alert {
-           
             padding: 20px;
             background-color: #f44336;
             color: white;
             opacity: 1;
             transition: opacity 0.6s;
             margin: 15px;
-            width:300px;
-            z-index:1;
-            position:absolute;
-          
-
+            width: 300px;
+            z-index: 1;
+            position: absolute;
         }
 
             .alert.success {
@@ -106,25 +103,40 @@
             display: block;
         }
 
-        #AddCartItem{
-            display:flex;
+        #AddCartItem {
+            display: flex;
         }
 
-        #bookname{
-            width:150px;
+        #bookname {
+            width: 150px;
         }
 
         #trash {
-            border-color:transparent;
+            border-color: transparent;
             display: flex;
             flex-direction: column;
             color: indianred;
             justify-content: center;
         }
-
-
-
     </style>
+
+
+    <script>
+        function toggleCheckboxes(masterCheckbox) {
+            // Get all checkboxes with the class 'row-checkbox'
+            const checkboxes = document.querySelectorAll('#isActive');
+            // Set the checked status of each checkbox to match the master checkbox
+            checkboxes.forEach(checkbox => checkbox.checked = masterCheckbox.checked);
+        }
+
+        function updateMasterCheckbox() {
+            const masterCheckbox = document.getElementById('isActiveAll');
+            const checkboxes = document.querySelectorAll('#isActive');
+            // Update the master checkbox based on the status of all row checkboxes
+            masterCheckbox.checked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+        }
+    </script>
+
 </head>
 <body>
 
@@ -313,10 +325,12 @@
         //    });
         //});
 
-        $("#isActiveAll").on('change', function (e)  {
-            $("#isActive").attr("checked", true)
+        //$("#isActiveAll").change(function (e) {
+
+        //    // Check or uncheck all other checkboxes based on the master checkbox state
+        //    $('#isActive').prop('checked', $(this).prop('checked'));
             
-        });
+        //});
 
  
 

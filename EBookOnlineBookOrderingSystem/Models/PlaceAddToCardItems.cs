@@ -15,7 +15,7 @@ namespace EBookOnlineBookOrderingSystem.Models
 
     public class PlaceAddToCardItem
     {
-        public bool IsActive { get; set; }
+        public int CheckID { get; set; }
         public Spr_GetAddCardInfoByUser AddToCard { get; set; }
     }
 

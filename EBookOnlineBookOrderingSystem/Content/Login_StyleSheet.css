@@ -82,6 +82,10 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;
+    width:280px;
+/*    display:flex;
+    flex-direction:row;*/
+    text-align:center;
 }
 
 .ActionLogin-btn-link > a {

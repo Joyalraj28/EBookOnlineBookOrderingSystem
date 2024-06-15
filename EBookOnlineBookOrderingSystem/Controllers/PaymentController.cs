@@ -1,5 +1,6 @@
 ﻿using EBookOnlineBookOrderingSystem.Controls;
 using EBookOnlineBookOrderingSystem.Models;
+using EBookOnlineBookOrderingSystem.Models.Procedure;
 using EBookOnlineBookOrderingSystem.Models.Table;
 using EBookOnlineBookOrderingSystem.Services;
 using Newtonsoft.Json;
@@ -52,6 +53,28 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                         Sqlbulider.Add(torder);
                     }
                 });
+
+
+                if(payment.IsAdToCard)
+                {
+                    payment.tOrder.ForEach(torder =>
+                    {
+                        Sqlbulider.Delete<AddToCard>(torder.bookid);
+                    });
+                }
+
+
+                var login = SessionControls<Users>.GetValue("LoginUser");
+
+                List<Spr_GetAddCardInfoByUser> getAddCardInfo = Sqlbulider.Procedure<Spr_GetAddCardInfoByUser>(new
+                {
+                    @userid = login.id
+                }).ToList();
+
+                if (getAddCardInfo.Count > 0)
+                {
+                    SessionControls<List<Spr_GetAddCardInfoByUser>>.SetValue("AddToCardInfo", getAddCardInfo);
+                }
 
                 TempData["SuccessAlert"] = "The order will be successfully placed";
                

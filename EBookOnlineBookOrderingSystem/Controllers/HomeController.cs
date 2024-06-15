@@ -173,7 +173,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
                         bookid = book.id,
                         price = book.price,
                         quantity = 1,
-                        userid = 1,
+                        userid = loginuser.id,
 
                     });
                 }
@@ -349,13 +349,68 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
             PlaceAddToCardItems placeAddToCardItems = new PlaceAddToCardItems();
             placeAddToCardItems.AddToCardItems = new List<PlaceAddToCardItem>();
+            int id = 1;
               Sqlbulider.Procedure<Spr_GetAddCardInfoByUser>(new { @userid = user.id }).ToList().ForEach(data =>
               {
-                  placeAddToCardItems.AddToCardItems.Add(new PlaceAddToCardItem { AddToCard = data}); 
+                  placeAddToCardItems.AddToCardItems.Add(new PlaceAddToCardItem { AddToCard = data , CheckID = id});
+                  id += 1;
               });
 
 
             return View(placeAddToCardItems);
+        }
+
+        [HttpPost]
+        public ActionResult PlaceOrderAddToCart(FormCollection formCollection)
+        {
+
+          
+            var Morderid = Sqlbulider.Count<MOrder>() + 1;
+            var TorderId = Sqlbulider.Count<TOrder>() + 1;
+
+            double amount = 0;
+
+            int count = int.Parse(formCollection["AddToCardCount"]);
+            List<TOrder> torderlist = new List<TOrder>();
+            if(count > 0)
+            {
+                for (int i = 1; i <= count; i++)
+                {
+                    if(formCollection.AllKeys.Contains("["+i+ "]isActive"))
+                    {
+
+                        var book = Sqlbulider.GetValue<Book>("id", formCollection["["+i+"]bid"]).FirstOrDefault();
+
+                       var torder = new TOrder
+                        {
+                            id = TorderId,
+                            bookid = book.id,
+                            morderid = Morderid,
+                            price = book.price * int.Parse(formCollection["[" + i + "]addcartQTY"]),
+                            quantity = int.Parse(formCollection["["+i+"]addcartQTY"])
+                        };
+
+
+                        torderlist.Add(torder);
+                        amount += torder.price;
+                        TorderId++;
+                    }
+                }
+            }
+
+
+            return RedirectToAction("Index", "Payment", new
+            {
+                payment = JsonConvert.SerializeObject(new PaymentModel
+                {
+                    Amount = amount,
+                    mOrder = new MOrder { id = Morderid, paymenttype = "Card", paymentdate = DateTime.Now, Status = 2 },
+                    Users = SessionControls<Users>.GetValue("LoginUser"),
+                    tOrder = torderlist,
+                    IsAdToCard = true
+                })
+            });
+
         }
     }
 }
