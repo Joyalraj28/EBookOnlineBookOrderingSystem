@@ -10,6 +10,6 @@ namespace AdminDashboard.Controls
     {
         public static bool IsShowNavigationBar { get; set; }
 
-        public static bool IsUserLogin => true; //SessionControls<Users>.GetValue("LoginUser") != null;
+        public static bool IsUserLogin => SessionControls<Users>.GetValue("LoginUser") != null;
     }
 }

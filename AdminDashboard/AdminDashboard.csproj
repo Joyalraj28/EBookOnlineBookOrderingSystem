@@ -145,6 +145,8 @@
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\Procedure\Spr_GetAddCardInfoByUser.cs" />
     <Compile Include="Models\Procedure\Spr_GetBookInfo.cs" />
+    <Compile Include="Models\Procedure\Spr_GetOrderInfo.cs" />
+    <Compile Include="Models\Procedure\Spr_GetTOrderInfo.cs" />
     <Compile Include="Models\Table\AddToCard.cs" />
     <Compile Include="Models\Table\Author.cs" />
     <Compile Include="Models\Table\Book.cs" />
@@ -1902,6 +1904,8 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\Pagination\jquery.min.js" />
     <Content Include="Scripts\Pagination\jquery.simplePagination.min.js" />
+    <Content Include="SQL\MOrder.sql" />
+    <Content Include="SQL\TOrder.sql" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1929,11 +1933,12 @@
     <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Customer\" />
-    <Folder Include="Views\Order\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

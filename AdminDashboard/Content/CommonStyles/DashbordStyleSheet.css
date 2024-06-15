@@ -24,6 +24,7 @@
     display: flex;
     align-items: center;
     padding: 0 20px;
+    width:100vw;
 
 }
 
@@ -85,7 +86,13 @@ footer p{
     position:absolute;
     display:flex;
     justify-content:end;
-    left:95vw;
+    left:88vw;
+}
+
+.login a{
+    font-weight:bold;
+    color:white;
+    text-decoration:none;
 }
 
 #snackbar {

@@ -50,6 +50,10 @@
     padding: 10px;
     border-radius: 5px;
     width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #Edit-btn a {
@@ -67,15 +71,23 @@
     padding: 10px;
     border-radius: 5px;
     width: 80px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
 
-#Info-a{
+#Info-a {
     background-color: red;
     background-color: dodgerblue;
     color: white;
     padding: 10px;
     border-radius: 5px;
     width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #Info-a a{
@@ -97,6 +109,10 @@
     padding: 10px;
     border-radius: 5px;
     width: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 

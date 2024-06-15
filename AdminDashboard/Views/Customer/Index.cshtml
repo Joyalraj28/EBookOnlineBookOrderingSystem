@@ -1,0 +1,36 @@
+﻿@model IEnumerable<AdminDashboard.Models.Table.Users>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of customer</h2>
+
+<table class="comman-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.phoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.phoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+    </tr>
+}
+
+</table>

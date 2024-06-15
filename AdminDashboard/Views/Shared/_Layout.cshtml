@@ -1,4 +1,5 @@
 ﻿@using AdminDashboard.Controls;
+@using AdminDashboard.Models.Table;
 
 
 <!DOCTYPE html>
@@ -12,73 +13,65 @@
 </head>
 <body>
 
-    @*<style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 0;
-                padding: 0;
-                background-color: #f4f4f4;
+    <style>
+
+        .dropbtn div{
+            display:flex;
+            flex-direction:row;
+        }
+
+        .dropbtn i{
+            margin-right:10px;
+        }
+
+        .dropbtn {
+            display: flex;
+            background-color: transparent;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+            .dropbtn:hover, .dropbtn:focus {
+                /*background-color: #2980B9;*/
+                color: antiquewhite;
             }
 
-            .navbar {
-                position: fixed;
-                background-color: #333;
-                color: white;
-                padding: 1em 0;
-                top: 0;
-                width: 100vw;
-                height: var(--SiteBar-height);
-                margin-left: var(--SiteBar-width);
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+                color: black;
+                padding: 15px 16px;
+                text-decoration: none;
+                display: block;
+                
             }
 
-            .navbar-container {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                max-width: 100vw;
-                margin: 0 auto;
-                padding: 0 1em;
-            }
 
 
-            .logo {
-                display: flex;
-                font-size: 25px;
-            }
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
 
-                .logo h1 {
-                    margin: 0;
-                }
-
-            .login {
-                display: flex;
-                align-items: center;
-            }
-
-                .login label {
-                    margin-right: 0.5em;
-                }
-
-                .login input[type="text"], .login input[type="password"] {
-                    padding: 0.5em;
-                    margin-right: 0.5em;
-                    border: none;
-                    border-radius: 0.25em;
-                }
-
-                .login button {
-                    padding: 0.5em 1em;
-                    background-color: #5cb85c;
-                    border: none;
-                    border-radius: 0.25em;
-                    color: white;
-                    cursor: pointer;
-                }
-
-                    .login button:hover {
-                        background-color: #4cae4c;
-                    }
-        </style>*@
+        .show {
+            display: block;
+        }
+    </style>
 
     @*<div class="navbar">
             <div class="navbar-container">
@@ -138,7 +131,24 @@
     <header class="topbar">
         <h1>E-Book</h1>
         <div class="login">
-            <label>Joyal</label>
+            @if (SessionControls<Users>.GetValue("LoginUser") is Users LoginUser && !string.IsNullOrEmpty(LoginUser?.username))
+            {
+                <div class="dropdown">
+                    <button onclick="LoginInfoDropdown()" class="dropbtn">
+                        <div>
+                            <i class='fas fa-user-circle'></i> @LoginUser.username
+                        </div>
+                    </button>
+                    <div id="LoginDropdown" class="dropdown-content">
+                        <a>@LoginUser.email</a>
+                        @Html.ActionLink("Sign out", "Signout", "Login")
+                    </div>
+                </div>
+            }
+            else
+            {
+                @Html.ActionLink("Login", "Index", "Login")
+            }
         </div>
     </header>
     @if (ViewConfig.IsShowNavigationBar)
@@ -168,7 +178,7 @@
         </main>
     }
     <footer class="footer">
-        <p>&copy; 2024 Your Company</p>
+        <p>&copy; 2024 EBook</p>
     </footer>
 </div>
 
@@ -229,6 +239,12 @@
                 $('#snackbar').removeClass('show');
             }, 3000); // 3000 milliseconds = 3 seconds
         });
+
+
+        function LoginInfoDropdown() {
+            document.getElementById("LoginDropdown").classList.toggle("show");
+        }
+
     </script>
 
 

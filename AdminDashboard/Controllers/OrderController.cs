@@ -1,9 +1,13 @@
 ﻿using AdminDashboard.Controls;
+using AdminDashboard.Models.Procedure;
+using AdminDashboard.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+
+
 
 namespace AdminDashboard.Controllers
 {
@@ -23,7 +27,8 @@ namespace AdminDashboard.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-            return View();
+
+            return View(Sqlbulider.Procedure<Spr_GetOrderInfo>());
         }
 
         // GET: Order/Details/5
@@ -35,8 +40,7 @@ namespace AdminDashboard.Controllers
                 return RedirectToAction("Index", "Login");
             }
 
-
-            return View();
+            return View(Sqlbulider.Procedure<Spr_GetTOrderInfo>(new { @morderID = id }));
         }
 
         // GET: Order/Create

@@ -17,6 +17,8 @@ namespace AdminDashboard.Controllers
         {
             ViewConfig.IsShowNavigationBar = true;
         }
+
+    
         public ActionResult Index()
         {
             if (!ViewConfig.IsUserLogin)

@@ -1,0 +1,43 @@
+﻿@model IEnumerable<AdminDashboard.Models.Procedure.Spr_GetTOrderInfo>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Order Book Info</h2>
+
+
+<table id="scroll-container" class="comman-table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.morderid)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.morderid)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BookName)
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,4 +1,6 @@
 ﻿using AdminDashboard.Controls;
+using AdminDashboard.Models.Table;
+using AdminDashboard.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +26,7 @@ namespace AdminDashboard.Controllers
             }
 
 
-            return View();
+            return View(Sqlbulider.GetValue<Users>("usertype","2"));
         }
 
         // GET: Customer/Details/5

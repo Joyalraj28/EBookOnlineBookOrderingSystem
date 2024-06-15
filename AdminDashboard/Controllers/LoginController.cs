@@ -19,76 +19,28 @@ namespace AdminDashboard.Controllers
             return View();
         }
 
-        // GET: Login/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Login(Users user)
         {
-            return View();
-        }
-
-        // GET: Login/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Login/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
+            var login = Sqlbulider.GetValue<Users>("email", user.email, "password", user.password, "usertype", "1");
+            if (login.Count() > 0)
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                SessionControls<Users>.SetValue("LoginUser", login.FirstOrDefault());
+                return RedirectToAction("Index", "Home");
+                
             }
-            catch
+
+            else
             {
-                return View();
+                TempData["IsLoginFail"] = true;
+                return RedirectToAction(nameof(Index));
             }
         }
 
-        // GET: Login/Edit/5
-        public ActionResult Edit(int id)
+
+        public ActionResult Signout()
         {
-            return View();
-        }
-
-        // POST: Login/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Login/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Login/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            SessionControls<Users>.ClearValue("LoginUser");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

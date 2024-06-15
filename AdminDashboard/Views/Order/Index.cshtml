@@ -1,0 +1,72 @@
+﻿@model IEnumerable<AdminDashboard.Models.Procedure.Spr_GetOrderInfo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Order</h2>
+
+<div id="scroll-container" class="comman-table">
+    <table class="table">
+        <tr>
+            <th>
+                Order ID
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Payment type
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Payment date
+            </th>
+            <th>
+                Status
+            </th>
+            <th>Details</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paymenttype)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.paymentdate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            <p id="Info-btn">
+                <i class='fas fa-info'></i>
+                @Html.ActionLink("Details", "Details", new { id = item.id })
+            </p>
+        </td>
+
+    </tr>
+        }
+
+    </table>
+
+</div>

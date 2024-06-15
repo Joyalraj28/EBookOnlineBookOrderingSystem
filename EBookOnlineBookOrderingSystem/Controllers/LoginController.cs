@@ -26,7 +26,7 @@ namespace EBookOnlineBookOrderingSystem.Controllers
 
         public ActionResult Login(Users user)
         {
-            var login = Sqlbulider.GetValue<Users>("email", user.email, "password", user.password);
+            var login = Sqlbulider.GetValue<Users>("email", user.email, "password", user.password, "usertype","2");
             if (login.Count() > 0)
             {
                 List<Spr_GetAddCardInfoByUser> getAddCardInfo = Sqlbulider.Procedure<Spr_GetAddCardInfoByUser>(new

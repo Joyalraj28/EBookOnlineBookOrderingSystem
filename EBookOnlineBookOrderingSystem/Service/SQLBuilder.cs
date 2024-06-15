@@ -160,6 +160,18 @@ namespace EBookOnlineBookOrderingSystem.Services
             }
         }
 
+        public static IEnumerable<T> GetValue<T>(string Type1, string value1, string Type2, string value2, string Type3, string value3)
+        {
+            try
+            {
+                return connection.Query<T>($"select * from {typeof(T).Name} where {Type1} = '{value1}' and {Type2} = '{value2}' and {Type3} = '{value3}'");
+            }
+            catch (Exception ex)
+            {
+                return new List<T>();
+            }
+        }
+
         public static IEnumerable<Model> Get<Model>(int ID)
         {
 
