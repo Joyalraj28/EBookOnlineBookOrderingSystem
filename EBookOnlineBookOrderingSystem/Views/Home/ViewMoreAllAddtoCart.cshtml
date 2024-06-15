@@ -6,6 +6,15 @@
 
 <h2>ViewMoreAllAddtoCart</h2>
 
+<style>
+    .disable-border{
+        border-color:transparent;
+    }
+    .disable-border:active {
+            border-color: transparent;
+    }
+</style>
+
 <p>
     @Html.ActionLink("Palce order", "Create")
 </p>
@@ -15,10 +24,9 @@
             <input 
              data-val="true"
              @*data-val-required="The isActive field is required."*@
-             id="isActive"
-             name="isActive"
-             type="checkbox"
-             value="true" />
+             id="isActiveAll"
+             name="isActiveAll"
+             type="checkbox" />
         </th>
         <th>
             ID
@@ -43,27 +51,27 @@
 
     <td>
         <input data-val="true"
-               @*data-val-required="The isActive field is required."*@
                id="isActive"
                name="isActive"
                type="checkbox"
-               value="true" />
+               value="@item.IsActive" />
     </td>
 
     <td>
-        @Html.DisplayFor(modelItem => item.AddToCard.id)
+        @Html.TextBoxFor(modelItem => item.AddToCard.id, htmlAttributes: new { @readonly = true, @class = "disable-border", Style = "width:20px;" })
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.AddToCard.name)
+        @Html.TextBoxFor(modelItem => item.AddToCard.name, htmlAttributes: new { @readonly = true, @class = "disable-border", Style = "width:200px;" })
     </td>
     <td>
-        @Html.DisplayFor(modelItem => item.AddToCard.quantity)
+        @Html.TextBoxFor(modelItem => item.AddToCard.quantity, htmlAttributes: new { @readonly = true, @class = "disable-border", Style = "width:25px;" })
     </td>
     <td>
         @{ var totalprice = item.AddToCard.price * item.AddToCard.quantity; }
-        @totalprice
+        <label>@totalprice</label>
     </td>
 </tr>
 }
 
 </table>
+
