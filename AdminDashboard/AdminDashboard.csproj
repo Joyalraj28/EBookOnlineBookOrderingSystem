@@ -138,6 +138,11 @@
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controls\SessionControls.cs" />
     <Compile Include="Controls\ViewConfig.cs" />
+    <Compile Include="Dataset\EBookDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EBookDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1884,6 +1889,17 @@
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-solid-900.woff" />
     <Content Include="Content\fontawesome_5.15.4\webfonts\fa-solid-900.woff2" />
+    <Content Include="Dataset\EBookDataSet.xsc">
+      <DependentUpon>EBookDataSet.xsd</DependentUpon>
+    </Content>
+    <None Include="Dataset\EBookDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EBookDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Dataset\EBookDataSet.xss">
+      <DependentUpon>EBookDataSet.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\Chart\Chart.bundle.min.js" />
     <Content Include="Scripts\Chart\ChartGenerated.js" />
@@ -1952,6 +1968,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Report\OrderReport.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
